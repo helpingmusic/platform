@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { EnvConfig } from 'src/shared/config/env-config.interface';
-import googleServiceAccountConfig from './helpingmusic.sa.json';
 
 @Injectable()
 export class ConfigService {
@@ -12,10 +11,6 @@ export class ConfigService {
 
   get(key: keyof EnvConfig): string {
     return this.env[key];
-  }
-
-  getGoogleSA() {
-    return googleServiceAccountConfig;
   }
 
 }
