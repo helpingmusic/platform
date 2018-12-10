@@ -4,6 +4,9 @@
   "description": "HOME API",
   "author": "Corey Sery",
   "license": "MIT",
+  "engines": {
+    "node": "8.9.3"
+  },
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r dotenv/config -r tsconfig-paths/register src/main.ts dotenv_config_path=local.env",

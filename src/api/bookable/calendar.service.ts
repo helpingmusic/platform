@@ -19,8 +19,6 @@ export class CalendarService {
 
     const gcal = config.getGoogleSA();
     this.calendar = new CalendarAPI({
-      // key: key.private_key,
-      // serviceAcctId: config.get('GOOGLE_SA_EMAIL'),
       timezone: 'UTC-06:00',
       serviceAcctId: gcal.client_email,
       key: gcal.private_key,
