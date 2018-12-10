@@ -1,0 +1,26 @@
+import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { UpdateStripeCustomerCommand } from 'src/users/commands/impl/update-stripe-customer.command';
+import { stripe } from 'src/common/vendor';
+
+@CommandHandler(UpdateStripeCustomerCommand)
+export class UpdateStripeCustomerHandler implements ICommandHandler<UpdateStripeCustomerCommand> {
+
+  constructor() {
+  }
+
+  async execute(cmd: UpdateStripeCustomerCommand, resolve: (value?) => void) {
+    const { user } = cmd;
+
+    const cust = await stripe.customers.update(
+      user.get('stripe.customerId'),
+      {
+        email: user.email,
+        metadata: { _id: String(user._id), name: user.name },
+        description: user.name,
+      },
+    );
+
+    resolve(cust);
+  }
+
+}

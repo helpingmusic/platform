@@ -1,0 +1,13 @@
+{
+  "extends": "tsconfig.json",
+  "compilerOptions": {
+    "types": [ "jest", "node" ],
+    "lib": ["ES2017"]
+  },
+  "include": [
+    "fixtures/**/*",
+    "*.spec.ts",
+    "*.e2e-spec.ts",
+    "**/*.d.ts"
+  ]
+}

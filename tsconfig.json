@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "paths": {
+      "src/*": ["./*"],
+      "server/*": ["legacy/server/*"],
+      "fixtures/*": ["../fixtures/*"]
+    },
+    "lib": ["ES2017"]
+  },
+  "files": [
+    "src/main.ts",
+    "src/worker.ts",
+    "src/clock.ts"
+  ],
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/node_modules/*",
+    "./node_modules/*",
+    "node_modules/*",
+    "node_modules/**/*",
+    "node_modules",
+    "*.spec.ts"
+  ]
+}
