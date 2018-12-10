@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "helpingmusic-192018",
+  "private_key_id": "44585cece71c9bcc6c287861195e8a5d0b6e48c2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC+2u2RS0RVKh5W\nB5zo5ePEthoon6nao7mt4jGqD0OI90asGWAHD/j3bALezwWl2A984cZSGH6AwDF5\nZEcVaqiDXlKqHN4JNAy40QO66VP0J8wqOIPy67ruB8USWsxmLb7Q0FgiVyZUvowX\nII93xstc/7W88FSLfPgfuk1O9ATU2ihh2yYyApUSb/5g6h1jH8W4AbiMMF3yJRxk\nrYrrbOONLngR/IO7B57ky3uD1ML/IiAYb9iJ5ky/KZWFSyljJLwVu/OSFww7XZvI\ngLkX+YTKOPWDK5VbjFbpw3qej6/svoqEJeOxIjY5RfheEPAcA9rikogWk8DK/M0p\nmP91u25DAgMBAAECggEACWnXYIc2Sre5i8PXBzIocyWYNZfYqGlhIHoCufnnpRB0\nViC2uLCs/aAHiYwIBYEoaYOM1tCmd1Xm/lnJm1KX3hEcCOVEflJhkAiCsbMqP5Ax\nnb4pMiU2W4uiHhKH+JXEldVipwRJ2Cbd1nYu5HV+jeApkpiNUvlKF0L4rhIE3oqs\nftftRYuKqhJ2sEwQvpxeQt1G7idn10kXvr0PC8fw6ynoJ/Ej/2ZxKSSXbpNVJY3j\nA5uR1R5tYpDiRKMjhLd9qDgGTBSFyvIRecjznmXfKmNCo73KbY2++lwmJDD71GHh\nZvZHAwvjrma+WzO2XWgGjg/BGKN94XSpypP5QGGLgQKBgQDedrC6mSpo6Wg7NFNi\nSw7WP+/Wh6bmNdo8mBiAWwEvWBO0M/pu0OtIRHzKhGSilH4wDwqE1n7ekHBH71cA\nh6ZtbRO/29uEomkg584SvKNO43cOT0LgmiabI8mY7Da/nlAEKbpKlytV+aG3EobI\nAL5C/59f9XHMV8xZW8ZIG7BS8QKBgQDboGfMNNnYb4OsAYisqWtBrvstq2eo5/hx\n/h0MZfseS/ibGf1VrCTP4iGFattLHNuBrROESnTImYNQCOgk/zploZ/6OV7llbpM\nZFMdc0JpIU/ZM831kqzK74JgqqNG0nekB4SA0KmBIudIo2hh9Hg2SpFfAhx5viMQ\n66wv6hDscwKBgGs8++R3gSIhocUobCmt1PEi0RKxQZsnypP7HZSCSgfwhU8Q32Ac\nBc9IdH+LYpeczVeNaJywaWgQaI/EqEPxICEPu7141lERmWvrUkNl+7NDo1iajLqI\nlKOklMHK3Hlyb1ASbWMXjCRdub7uh1pSQWU6pDE1uC2xBSjuPJ71+gGBAoGAL+G4\nv3yGQfmN62IqOfp1t8w+VqaX4usv7ypHivxw0xodCTORV6xAGlJinIO/a5DPCmaB\nasYQz+soBbrrYaWDRcUG67a2Sbdq9lypAjKut9zbW68/p9picZvmAM0y663XB5vb\n93mGevDxG5UEnNZ/ntaC+wOq0Z/yZS38TDXrmqECgYEAiZSu9UurKeQz3YLTnErJ\n+IHJJtjhiTDeGEuuj/IfubMIWpge+ad2L1Kj/kdpkHZNWBQpZb+Jyxc3Inwn4z/s\nrnndbqcV4SeOK3hGcH6thraf2S/osBKv7llkghp+eRPSZMLMted3RMT+CZoySHtH\nZgQX+YZXeqtSVM1+F6zZrpE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "home-calendar@helpingmusic-192018.iam.gserviceaccount.com",
+  "client_id": "111516341904652233888",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/home-calendar%40helpingmusic-192018.iam.gserviceaccount.com"
+}

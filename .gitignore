@@ -3,5 +3,5 @@ local.env
 dist
 node_modules
 src/legacy
-src/shared/config/helpingmusic.sa.json
+helpingmusic.sa.json
 .idea
