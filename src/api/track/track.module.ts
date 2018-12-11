@@ -14,6 +14,9 @@ import { TrackService } from './track.service';
 
 @Module({
   imports: [
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    MongooseModule.forFeature([{ name: 'Track', schema: TrackSchema }]),
+    SharedModule,
     MulterModule.registerAsync({
       imports: [StorageModule],
       inject: [StorageService],
@@ -33,14 +36,14 @@ import { TrackService } from './track.service';
             });
           },
           key(req, file: FileUpload, cb: (err: any, path: string) => void) {
-            cb(null, ['tracks', req.params.id].join('/'));
+            const ext = (file.encoding).split('/').pop();
+            const hash = Math.random().toString(36).substr(2, 5);
+            const fn = `${req.params.id}.${hash}.${ext}`;
+            cb(null, ['tracks', fn].join('/'));
           },
         }),
       }),
     }),
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    MongooseModule.forFeature([{ name: 'Track', schema: TrackSchema }]),
-    SharedModule,
   ],
   controllers: [TrackController],
   providers: [

@@ -2,6 +2,7 @@ export interface EnvConfig {
   NODE_PATH: string;
   NODE_ENV: string;
   DEBUG: string;
+  PORT: string;
 
   DOMAIN: string;
   APP_ORIGIN: string;

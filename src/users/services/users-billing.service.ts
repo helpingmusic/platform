@@ -2,12 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { CreditTransactionService } from 'src/api/credit-transaction/credit-transaction.service';
 import { TransactionTypes } from 'src/api/credit-transaction/transaction-types.enum';
 import { MembershipTiers, plans } from 'src/common/constants';
+import { BadDataException } from 'src/common/exceptions/bad-data.exception';
 import { LogService } from 'src/shared/logger/log.service';
 import { ILogger } from 'src/shared/logger/logger.interface';
 import { IBilling } from 'src/users/interfaces/billing.interface';
 import { stripe } from 'src/common/vendor';
 import * as Stripe from 'stripe';
-import { ICard } from 'stripe';
+import { ICard, IStripeError } from 'stripe';
 import { IUser } from 'src/users/interfaces/user.interface';
 import ISubscription = Stripe.subscriptions.ISubscription;
 
@@ -29,8 +30,16 @@ export class UsersBillingService {
    * @returns {Promise}
    */
   async setToken(user: IUser, source: string) {
-    const res = await stripe.customers.update(user.stripe.customerId, { source });
-    const card = res.sources.data[0] as ICard;
+    let card: ICard;
+    try {
+      const res = await stripe.customers.update(user.stripe.customerId, { source });
+      card = res.sources.data[0] as ICard;
+    } catch (e) {
+      throw new BadDataException({
+        field: 'payment',
+        message: e.message,
+      });
+    }
 
     user.stripe.set('card', {
       id: card.id,
@@ -113,6 +122,7 @@ export class UsersBillingService {
       'stripe.subscriptionId': subscription.id,
       'stripe.status': subscription.status,
       'stripe.periodEnd': new Date(subscription.current_period_end * 1000),
+      'active_until':  new Date(subscription.current_period_end * 1000),
     });
 
     await user.save();

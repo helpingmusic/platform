@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ILogger } from 'src/shared/logger/logger.interface';
+import util from 'util';
 import { createLogger, format as fmt, Logger, transports } from 'winston';
 
 @Injectable()
@@ -15,9 +16,19 @@ export class LogService implements ILogger {
         fmt.metadata(),
         fmt.simple(),
         fmt.colorize({ level: true }),
-        fmt.printf(info =>
-           `${info.metadata.timestamp} [${(info.metadata.label || '').toUpperCase()}]  ${info.level}: \t${info.message}`,
-        ),
+        fmt.printf(info => {
+
+          let message = info.message;
+          if (typeof info.message === 'object') {
+            message = util.inspect(info.message, {
+              showHidden: false,
+              depth: 4,
+              colors: true,
+            });
+          }
+
+          return `${info.metadata.timestamp} [${(info.metadata.label || '').toUpperCase()}]  ${info.level}: \t${message}`;
+        }),
       ),
       transports: [
         new transports.Console(),

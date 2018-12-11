@@ -1,6 +1,7 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import { CommandBus } from '@nestjs/cqrs';
+import { CreditTransactionModule } from 'src/api/credit-transaction/credit-transaction.module';
 import { SearchModule } from 'src/core/search/search.module';
 import { SharedModule } from 'src/shared/shared.module';
 import { UsersModule } from 'src/users/users.module';
@@ -11,6 +12,7 @@ import { WorkerController } from 'src/worker/worker.controller';
   imports: [
     SharedModule,
     UsersModule,
+    CreditTransactionModule,
     SearchModule,
   ],
   controllers: [
