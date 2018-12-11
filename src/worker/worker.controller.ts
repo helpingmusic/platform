@@ -10,6 +10,11 @@ export class WorkerController {
   constructor(private cmdBus: CommandBus) {
   }
 
+  @MessagePattern('ping')
+  async ping() {
+    console.log('worker ping');
+  }
+
   @MessagePattern({ cmd: 'run-credit-allowances' })
   async runCreditAllowances() {
     return await this.cmdBus.execute(
