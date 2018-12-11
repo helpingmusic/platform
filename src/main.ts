@@ -17,7 +17,10 @@ import { AppModule } from './app.module';
   const config = app.get<ConfigService>(ConfigService);
 
   app.enableCors({
-    origin: [config.get('APP_ORIGIN')],
+    origin: [
+      config.get('APP_ORIGIN'),
+      'https://home-admin.herokuapp.com',
+    ],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
     methods: '*',

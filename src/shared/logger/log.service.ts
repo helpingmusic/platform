@@ -31,7 +31,7 @@ export class LogService implements ILogger {
       (message: string, ...args: Array<any>) =>
         this.logger.log({
           level,
-          message: message.trim(),
+          message: typeof message === 'string' ? message.trim() : message,
           metadata: args,
           label: namespace,
         });
