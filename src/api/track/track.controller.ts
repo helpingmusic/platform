@@ -29,7 +29,7 @@ import { UpdateTrackDto } from 'src/api/track/dto/update-track.dto';
 
 import { Roles } from 'src/auth/guards/roles.decorator';
 import { UserRoles } from 'src/auth/guards/roles.enum';
-import { BadDataException } from 'src/exceptions/bad-data.exception';
+import { BadDataException } from 'src/common/exceptions/bad-data.exception';
 import { IUser } from 'src/users/interfaces/user.interface';
 import { NotFoundInterceptor } from 'src/common/not-found.interceptor';
 import { Output } from 'src/common/output.decorator';

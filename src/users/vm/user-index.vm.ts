@@ -1,6 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
 import { MembershipType } from 'src/common/constants';
-import { SearchRecord } from 'src/search/search-record';
+import { SearchRecord } from 'src/core/search/search-record';
 
 /**
  * Representation of user to be indexed for search

@@ -8,7 +8,7 @@ import { BillUserForBookingCommand } from 'src/api/booking/commands/bill-user-fo
 import { CreateBookingDto } from 'src/api/booking/dto/create-booking.dto';
 import { UpdateBookingDto } from 'src/api/booking/dto/update-booking.dto';
 import { IBooking } from 'src/api/booking/interfaces/booking.interface';
-import { BadDataException } from 'src/exceptions/bad-data.exception';
+import { BadDataException } from 'src/common/exceptions/bad-data.exception';
 import { UsersService } from 'src/users/services/users.service';
 import { CommandResult } from 'src/common/abstract/command-result';
 import { moment } from 'src/common/vendor';

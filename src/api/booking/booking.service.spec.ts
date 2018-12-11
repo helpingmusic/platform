@@ -6,7 +6,7 @@ import { Bookables } from 'src/api/bookable/bookables';
 import { BillUserForBookingCommand } from 'src/api/booking/commands/bill-user-for-booking.command';
 import { CreateBookingDto } from 'src/api/booking/dto/create-booking.dto';
 import { MembershipPlans } from 'src/common/constants';
-import { BadDataException } from 'src/exceptions/bad-data.exception';
+import { BadDataException } from 'src/common/exceptions/bad-data.exception';
 import { UsersService } from 'src/users/services/users.service';
 import { CommandResult } from 'src/common/abstract/command-result';
 import { moment } from 'src/common/vendor';

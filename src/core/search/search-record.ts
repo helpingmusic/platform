@@ -1,6 +1,6 @@
 import { Expose, Type } from 'class-transformer';
 import { Document } from 'mongoose';
-import { IRecord } from 'src/search/record.interface';
+import { IRecord } from 'core/search/record.interface';
 
 export abstract class SearchRecord implements IRecord {
 

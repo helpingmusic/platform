@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import algoliasearch, { Client, Index } from 'algoliasearch';
 import { classToPlain } from 'class-transformer';
 import { ConfigService } from 'src/shared/config/config.service';
-import { Indices } from 'src/search/indices.enum';
-import { IRecord } from 'src/search/record.interface';
+import { Indices } from 'src/core/search/indices.enum';
+import { IRecord } from 'src/core/search/record.interface';
 
 @Injectable()
 export class SearchService {

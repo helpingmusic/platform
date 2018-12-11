@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { BadDataException } from 'src/exceptions/bad-data.exception';
+import { BadDataException } from 'src/common/exceptions/bad-data.exception';
 import { QuickCreateUserDto } from 'src/users/dto/quick-create-user.dto';
 import { IUser } from 'src/users/interfaces/user.interface';
 import { UsersBillingService } from 'src/users/services/users-billing.service';

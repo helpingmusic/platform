@@ -5,7 +5,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { CreateModelMock } from 'fixtures/mocks/model.mock';
 import { SendResetEmailCommand } from 'src/api/password-reset/commands/send-reset-email.command';
 import { IPasswordReset } from 'src/api/password-reset/password-reset.interface';
-import { BadDataException } from 'src/exceptions/bad-data.exception';
+import { BadDataException } from 'src/common/exceptions/bad-data.exception';
 import { UsersService } from 'src/users/services/users.service';
 import { moment } from 'src/common/vendor';
 import { PasswordResetService } from './password-reset.service';

@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { Indices } from 'src/search/indices.enum';
-import { SearchService } from 'src/search/search.service';
+import { Indices } from 'src/core/search/indices.enum';
+import { SearchService } from 'src/core/search/search.service';
 import { RemoveUserIndexCommand } from 'src/users/commands/impl/remove-user-index.command';
 
 @CommandHandler(RemoveUserIndexCommand)

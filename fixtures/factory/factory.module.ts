@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FactoryService } from 'fixtures/factory/factory.service';
-import { DatabaseModule } from 'src/database/database.module';
+import { DatabaseModule } from 'src/shared/database/database.module';
 
 @Module({
   imports: [

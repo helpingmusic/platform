@@ -7,7 +7,7 @@ import { CreditTransactionModule } from 'src/api/credit-transaction/credit-trans
 import { NotificationsModule } from 'src/api/notifications/notifications.module';
 import { StorageModule } from 'src/core/storage/storage.module';
 import { StorageService } from 'src/core/storage/storage.service';
-import { SearchModule } from 'src/search/search.module';
+import { SearchModule } from 'src/core/search/search.module';
 import { SharedModule } from 'src/shared/shared.module';
 import { CommandHandlers } from 'src/users/commands';
 import { EventHandlers } from 'src/users/events';

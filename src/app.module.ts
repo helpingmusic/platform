@@ -6,21 +6,18 @@ import { UsersModule } from 'src/users/users.module';
 import { ApiModule } from './api/api.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
-import { DatabaseModule } from './database/database.module';
-import { SearchModule } from './search/search.module';
+import { SearchModule } from './core/search/search.module';
 import { SharedModule } from './shared/shared.module';
 import { WebhooksModule } from './webhooks/webhooks.module';
 
 @Module({
   imports: [
     SharedModule,
-    DatabaseModule,
     CoreModule,
     UsersModule,
     AuthModule,
     ApiModule,
     WebhooksModule,
-    SearchModule,
   ],
   providers: [
     {

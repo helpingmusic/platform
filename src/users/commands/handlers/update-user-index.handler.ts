@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { classToPlain, plainToClass } from 'class-transformer';
-import { Indices } from 'src/search/indices.enum';
-import { SearchService } from 'src/search/search.service';
+import { Indices } from 'src/core/search/indices.enum';
+import { SearchService } from 'src/core/search/search.service';
 import { UpdateUserIndexCommand } from 'src/users/commands/impl/update-user-index.command';
 import { UserIndexVm } from 'src/users/vm/user-index.vm';
 
