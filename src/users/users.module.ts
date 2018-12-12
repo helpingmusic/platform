@@ -27,7 +27,6 @@ import { UsersService } from './services/users.service';
 
 @Module({
   imports: [
-    CQRSModule,
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
     SharedModule,
     CreditTransactionModule,

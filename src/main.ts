@@ -1,18 +1,32 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import compression from 'compression';
 import helmet from 'helmet';
+import { CronModule } from 'src/cron/cron.module';
 
 import { ConfigService } from 'src/shared/config/config.service';
 import { LogService } from 'src/shared/logger/log.service';
+import { WorkerModule } from 'src/worker/worker.module';
 
 import { AppModule } from './app.module';
 
 (async function bootstrap() {
 
+  process.on('unhandledRejection', r => console.log(r));
+
   const app = await NestFactory.create(AppModule);
+
+  const worker = await NestFactory.createMicroservice(WorkerModule, {
+    transport: Transport.REDIS,
+    options: {
+      url: process.env.REDIS_URI,
+    },
+  });
+
+  const clock = await NestFactory.create(CronModule);
 
   const config = app.get<ConfigService>(ConfigService);
 
@@ -29,8 +43,13 @@ import { AppModule } from './app.module';
   // app.use(csurf());
   app.use(compression());
 
-  const log = app.get<LogService>(LogService).createLogger('nest');
-  app.useLogger({ log: log.info, error: log.error, warn: log.debug });
+  const createLogger = name => {
+    const l = app.get<LogService>(LogService).createLogger(name);
+    return { log: l.info, error: l.error, warn: l.debug };
+  };
+  app.useLogger(createLogger('web'));
+  worker.useLogger(createLogger('worker'));
+  clock.useLogger(createLogger('clock'));
 
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true, // strips unnamed props
@@ -46,6 +65,7 @@ import { AppModule } from './app.module';
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 
+  await worker.listenAsync();
   await app.listen(process.env.PORT);
 
 })();

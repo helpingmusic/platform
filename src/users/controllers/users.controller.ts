@@ -17,8 +17,6 @@ import { Output } from 'src/common/output.decorator';
 @ApiUseTags('Users')
 export class UsersController implements OnModuleInit {
 
-  auth: AuthService;
-
   constructor(
     private usersService: UsersService,
     private moduleRef: ModuleRef,
@@ -26,8 +24,6 @@ export class UsersController implements OnModuleInit {
   }
 
   onModuleInit(): any {
-    // todo less hacky way to get auth service
-    this.auth = this.moduleRef.get<AuthService>(AuthService, { strict: false });
   }
 
   @Post()
@@ -35,7 +31,9 @@ export class UsersController implements OnModuleInit {
   @Output(UserCreateResponseVm)
   async create(@Body() body: CreateUserDto): Promise<ITokenAssignable> {
     const user = await this.usersService.createUser(body);
-    const token = this.auth.signToken(user);
+    // todo less hacky way to get auth service
+    const auth = this.moduleRef.get<AuthService>(AuthService, { strict: false });
+    const token = auth.signToken(user);
     return { user: user.toObject(), token };
   }
 
