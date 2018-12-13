@@ -36,7 +36,7 @@ export class RunCreditAllowancesHandler implements ICommandHandler<RunCreditAllo
       }
 
       await this.transactionService.create({
-        user: at.user,
+        user: u._id,
         startAmount: u.credits,
         endAmount: u.credits + applyToNextMonth,
         type: TransactionTypes.MONTHLY_ALLOWANCE,
