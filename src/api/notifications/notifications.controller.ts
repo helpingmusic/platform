@@ -2,7 +2,7 @@ import { Controller, Param, Post } from '@nestjs/common';
 import { ApiOperation, ApiUseTags } from '@nestjs/swagger';
 import { NotificationsService } from 'src/api/notifications/notifications.service';
 import { IUser } from 'src/users/interfaces/user.interface';
-import { User } from 'src/common/user.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 
 @Controller('notifications')
 @ApiUseTags('Notifications')

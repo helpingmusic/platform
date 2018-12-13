@@ -18,8 +18,8 @@ import { BookingVm } from 'src/api/booking/vm/booking.vm';
 import { ActiveSubscriptionGuard } from 'src/auth/guards/active-subscription.guard';
 import { UserRoles } from 'src/auth/guards/roles.enum';
 import { IUser } from 'src/users/interfaces/user.interface';
-import { Output } from 'src/common/output.decorator';
-import { User } from 'src/common/user.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 
 @ApiUseTags('Bookings')
 @ApiResponse({ status: 401, description: 'User is not logged in' })
@@ -39,7 +39,7 @@ export class BookingController {
   @ApiOperation({ title: 'Get Bookings for a user', description: 'Takes the current user\'s id to fetch bookings.' })
   @ApiOkResponse({ isArray: true, type: BookingVm })
   @Get()
-  @Output([BookingVm])
+  @Output(BookingVm)
   async index(@User() u: IUser, @Query() q: { booker: string }) {
     if (q.booker !== String(u._id) && u.role !== UserRoles.ADMIN) {
       throw new UnauthorizedException();

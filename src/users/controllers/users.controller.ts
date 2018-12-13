@@ -3,15 +3,17 @@ import { ModuleRef } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiUseTags } from '@nestjs/swagger';
 import { AuthService } from 'src/auth/auth.service';
+import { UserRoles } from 'src/auth/guards/roles.enum';
 import { ITokenAssignable } from 'src/auth/interfaces/token-assignable.interface';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { QuickCreateUserDto } from 'src/users/dto/quick-create-user.dto';
 import { IUser } from 'src/users/interfaces/user.interface';
 import { UsersService } from 'src/users/services/users.service';
+import { UserAdminDetailVm } from 'src/users/vm/user-admin-detail.vm';
 import { UserCreateResponseVm } from 'src/users/vm/user-create-response.vm';
 import { UserProfileVm } from 'src/users/vm/user-profile.vm';
 import { UserSelfVm } from 'src/users/vm/user-self.vm';
-import { Output } from 'src/common/output.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
 
 @Controller('users')
 @ApiUseTags('Users')
@@ -40,7 +42,10 @@ export class UsersController implements OnModuleInit {
   @Get(':id')
   @ApiOperation({ title: 'Show User' })
   @UseGuards(AuthGuard('jwt'))
-  @Output(UserProfileVm)
+  @Output({
+    [UserRoles.USER]: UserProfileVm,
+    [UserRoles.ADMIN]: UserAdminDetailVm,
+  })
   show(@Param('id') id: string): Promise<IUser> {
     return this.usersService.getById(id);
   }

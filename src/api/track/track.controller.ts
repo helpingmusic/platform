@@ -31,10 +31,10 @@ import { Roles } from 'src/auth/guards/roles.decorator';
 import { UserRoles } from 'src/auth/guards/roles.enum';
 import { BadDataException } from 'src/common/exceptions/bad-data.exception';
 import { IUser } from 'src/users/interfaces/user.interface';
-import { NotFoundInterceptor } from 'src/common/not-found.interceptor';
-import { Output } from 'src/common/output.decorator';
+import { NotFoundInterceptor } from 'src/common/interceptors/not-found.interceptor';
+import { Output } from 'src/common/decorators/output.decorator';
 import { IS3FileUpload } from 'src/core/storage/s3-file-upload.interface';
-import { User } from 'src/common/user.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 import { CreateTrackDto } from './dto/create-track.dto';
 
 import { ITrack } from './track.interface';
@@ -62,7 +62,7 @@ export class TrackController {
   })
 
   @Get()
-  @Output([TrackVm])
+  @Output(TrackVm)
   indexUser(@Query() query: { user: string }): Promise<ITrack[]> {
     return this.trackService.indexForUser(query.user);
   }

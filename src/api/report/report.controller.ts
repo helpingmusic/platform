@@ -17,8 +17,8 @@ import { UserRoles } from 'src/auth/guards/roles.enum';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 import { IUser } from 'src/users/interfaces/user.interface';
-import { Output } from 'src/common/output.decorator';
-import { User } from 'src/common/user.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 import { CreateReportDto } from './dto/create-report.dto';
 
 import { IReport } from './interfaces/report.interface';
@@ -46,7 +46,7 @@ export class ReportController {
   })
 
   @Get()
-  @Output([ReportVm])
+  @Output(ReportVm)
   index(): Promise<IReport[]> {
     return this.reportService.index();
   }

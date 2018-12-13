@@ -15,9 +15,9 @@ import { UpdateReviewDto } from 'src/api/review/dto/update-review.dto';
 import { ActiveSubscriptionGuard } from 'src/auth/guards/active-subscription.guard';
 
 import { IUser } from 'src/users/interfaces/user.interface';
-import { NotFoundInterceptor } from 'src/common/not-found.interceptor';
-import { Output } from 'src/common/output.decorator';
-import { User } from 'src/common/user.decorator';
+import { NotFoundInterceptor } from 'src/common/interceptors/not-found.interceptor';
+import { Output } from 'src/common/decorators/output.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 import { CreateReviewDto } from './dto/create-review.dto';
 
 import { IReview } from './review.interface';
@@ -46,7 +46,7 @@ export class ReviewController {
   })
 
   @Get()
-  @Output([ReviewVm])
+  @Output(ReviewVm)
   index(@Query() query: { user: string }): Promise<IReview[]> {
     const q = query.user ? {reviewee: query.user} : {};
     return this.reviewService.find(q);

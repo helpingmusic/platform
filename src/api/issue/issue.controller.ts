@@ -18,8 +18,8 @@ import { ActiveSubscriptionGuard } from 'src/auth/guards/active-subscription.gua
 import { Roles } from 'src/auth/guards/roles.decorator';
 import { UserRoles } from 'src/auth/guards/roles.enum';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { NotFoundInterceptor } from 'src/common/not-found.interceptor';
-import { Output } from 'src/common/output.decorator';
+import { NotFoundInterceptor } from 'src/common/interceptors/not-found.interceptor';
+import { Output } from 'src/common/decorators/output.decorator';
 import { CreateIssueDto } from './dto/create-issue.dto';
 
 import { IIssue } from './issue.interface';
@@ -48,7 +48,7 @@ export class IssueController {
 
   @Get()
   @Roles(UserRoles.ADMIN)
-  @Output([IssueVm])
+  @Output(IssueVm)
   index(): Promise<IIssue[]> {
     return this.issueService.index();
   }

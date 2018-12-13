@@ -5,7 +5,7 @@ import { IThread } from 'src/api/thread/thread.interface';
 import { ThreadService } from 'src/api/thread/thread.service';
 import { ThreadVm } from 'src/api/thread/thread.vm';
 import { ActiveSubscriptionGuard } from 'src/auth/guards/active-subscription.guard';
-import { Output } from 'src/common/output.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
 
 @ApiUseTags('thread')
 @ApiResponse({ status: 401, description: 'User is not logged in' })

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiCreatedResponse, ApiImplicitBody, ApiOkResponse, ApiOperation, ApiUnprocessableEntityResponse, ApiUseTags } from '@nestjs/swagger';
 import { CreditTransactionService } from 'src/api/credit-transaction/credit-transaction.service';
@@ -15,13 +15,13 @@ import { Roles } from 'src/auth/guards/roles.decorator';
 import { UserRoles } from 'src/auth/guards/roles.enum';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { IUser } from 'src/users/interfaces/user.interface';
-import { Output } from 'src/common/output.decorator';
-import { User } from 'src/common/user.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 
 @ApiUseTags('Credit Transactions')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Roles(UserRoles.ADMIN)
-@Controller('credit-transaction')
+@Controller('credit-transactions')
 export class CreditTransactionController {
 
   constructor(private creditService: CreditTransactionService) {
@@ -38,7 +38,6 @@ export class CreditTransactionController {
   })
 
   @Get('users/:userId')
-  // @Output([CreditTransactionVm])
   index(@Param('userId') userId: string): Promise<{ transactions: ICreditTransaction[], allowances: IAllowanceTransaction[] }> {
     return this.creditService.indexUser(userId);
   }
@@ -53,7 +52,7 @@ export class CreditTransactionController {
 
   @Post()
   @Output(CreditTransactionVm)
-  create(@User() user: IUser, @Body() body: CreateCreditTransactionDto): Promise<ICreditTransaction> {
+  async create(@User() user: IUser, @Body() body: CreateCreditTransactionDto): Promise<ICreditTransaction> {
     return this.creditService.create({
       user: body.user,
       type: TransactionTypes.ADMIN_SET,
@@ -74,9 +73,9 @@ export class CreditTransactionController {
   @ApiCreatedResponse({ description: 'Allowance Transaction Schedule Created', type: AllowanceTransactionVm, isArray: true })
 
   @Post('allowances')
-  @Output([AllowanceTransactionVm])
+  @Output(AllowanceTransactionVm)
   createAllowanceSchedule(@User() user: IUser, @Body() body: CreateAllowanceScheduleDto): Promise<IAllowanceTransaction[]> {
-    return this.creditService.createAllowanceScheduleFor(user._id, body);
+    return this.creditService.createAllowanceScheduleFor(body.user, body);
   }
 
   /**
@@ -87,10 +86,21 @@ export class CreditTransactionController {
   @ApiUnprocessableEntityResponse({ description: 'Body not valid' })
   @ApiCreatedResponse({ description: 'Allowance Transaction Schedule Created', type: AllowanceTransactionVm })
 
-  @Post('allowances/:id')
-  @Output([AllowanceTransactionVm])
+  @Put('allowances/:id')
+  @Output(AllowanceTransactionVm)
   updateAllowanceTransaction(@Param('id') id: string, @Body() body: UpdateAllowanceDto): Promise<IAllowanceTransaction> {
     return this.creditService.updateAllowance(id, body);
+  }
+
+  /**
+   * Delete allowance transaction
+   */
+  @ApiOperation({ title: 'Delete Allowance Transaction' })
+  @ApiUnprocessableEntityResponse({ description: 'Body not valid' })
+
+  @Delete('allowances/:id')
+  deleteAllowanceTransaction(@Param('id') id: string): Promise<any> {
+    return this.creditService.removeAllowance(id);
   }
 
 }

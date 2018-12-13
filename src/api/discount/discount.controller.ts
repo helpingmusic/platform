@@ -16,8 +16,8 @@ import { ActiveSubscriptionGuard } from 'src/auth/guards/active-subscription.gua
 import { Roles } from 'src/auth/guards/roles.decorator';
 import { UserRoles } from 'src/auth/guards/roles.enum';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { NotFoundInterceptor } from 'src/common/not-found.interceptor';
-import { Output } from 'src/common/output.decorator';
+import { NotFoundInterceptor } from 'src/common/interceptors/not-found.interceptor';
+import { Output } from 'src/common/decorators/output.decorator';
 
 import { IDiscount } from './discount.interface';
 import { DiscountService } from './discount.service';
@@ -46,7 +46,7 @@ export class DiscountController {
 
   @Get()
   @Roles(UserRoles.ADMIN)
-  @Output([DiscountVm])
+  @Output(DiscountVm)
   index(): Promise<IDiscount[]> {
     return this.discountService.index();
   }

@@ -30,8 +30,8 @@ import { CreateCommentDto } from 'src/api/thread/comments/dto/create-comment.dto
 import { UpdateCommentDto } from 'src/api/thread/comments/dto/update-comment.dto';
 import { ActiveSubscriptionGuard } from 'src/auth/guards/active-subscription.guard';
 import { IUser } from 'src/users/interfaces/user.interface';
-import { Output } from 'src/common/output.decorator';
-import { User } from 'src/common/user.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 
 @ApiUseTags('comments')
 @ApiResponse({ status: 401, description: 'User is not logged in' })

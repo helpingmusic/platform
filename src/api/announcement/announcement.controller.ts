@@ -17,8 +17,8 @@ import { ActiveSubscriptionGuard } from 'src/auth/guards/active-subscription.gua
 import { Roles } from 'src/auth/guards/roles.decorator';
 import { UserRoles } from 'src/auth/guards/roles.enum';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { NotFoundInterceptor } from 'src/common/not-found.interceptor';
-import { Output } from 'src/common/output.decorator';
+import { NotFoundInterceptor } from 'src/common/interceptors/not-found.interceptor';
+import { Output } from 'src/common/decorators/output.decorator';
 
 import { IAnnouncement } from './announcement.interface';
 import { AnnouncementService } from './announcement.service';
@@ -46,7 +46,7 @@ export class AnnouncementController {
   })
 
   @Get()
-  @Output([AnnouncementVm])
+  @Output(AnnouncementVm)
   index(@Query() query: { page: number }): Promise<IAnnouncement[]> {
     return this.announcementService.paginate({}, query.page - 1);
   }

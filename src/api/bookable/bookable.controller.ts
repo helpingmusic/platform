@@ -5,8 +5,8 @@ import { BookableService } from 'src/api/bookable/bookable.service';
 import { BookableVm } from 'src/api/bookable/bookable.vm';
 import { ActiveSubscriptionGuard } from 'src/auth/guards/active-subscription.guard';
 
-import { NotFoundInterceptor } from 'src/common/not-found.interceptor';
-import { Output } from 'src/common/output.decorator';
+import { NotFoundInterceptor } from 'src/common/interceptors/not-found.interceptor';
+import { Output } from 'src/common/decorators/output.decorator';
 
 @ApiUseTags('Bookables')
 @ApiResponse({ status: 401, description: 'User is not logged in' })
@@ -27,7 +27,7 @@ export class BookableController {
     type: BookableVm,
   })
   @Get()
-  @Output([BookableVm])
+  @Output(BookableVm)
   async index() {
     return this.bookableService.index();
   }

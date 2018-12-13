@@ -1,5 +1,6 @@
 import { ClassSerializerInterceptor, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { OutputInterceptor } from 'src/common/interceptors/output.interceptor';
 import { LoggerMiddleware } from 'src/common/logger.middleware';
 import { ErrorReporterInterceptor } from 'src/core/error-reporter.interceptor';
 import { UsersModule } from 'src/users/users.module';
@@ -22,7 +23,7 @@ import { WebhooksModule } from './webhooks/webhooks.module';
   providers: [
     {
       provide: APP_INTERCEPTOR,
-      useClass: ClassSerializerInterceptor,
+      useClass: OutputInterceptor,
     },
     {
       provide: APP_INTERCEPTOR,

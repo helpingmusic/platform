@@ -28,9 +28,9 @@ import { ActiveSubscriptionGuard } from 'src/auth/guards/active-subscription.gua
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { IUser } from 'src/users/interfaces/user.interface';
 
-import { NotFoundInterceptor } from 'src/common/not-found.interceptor';
-import { Output } from 'src/common/output.decorator';
-import { User } from 'src/common/user.decorator';
+import { NotFoundInterceptor } from 'src/common/interceptors/not-found.interceptor';
+import { Output } from 'src/common/decorators/output.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 import { CreatePostDto } from './dto/create-post.dto';
 
 import { IPost } from './post.interface';
@@ -58,7 +58,7 @@ export class PostController {
   })
 
   @Get()
-  @Output([PostVm])
+  @Output(PostVm)
   index(@Query() query: { page: number, poster: string }): Promise<IPost[]> {
     const q = query.poster ? {poster: query.poster} : {};
     return this.postService.paginate(q, query.page - 1);

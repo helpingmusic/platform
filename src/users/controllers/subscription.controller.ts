@@ -7,8 +7,8 @@ import { IUser } from 'src/users/interfaces/user.interface';
 import { UsersBillingService } from 'src/users/services/users-billing.service';
 import { InvoiceVm } from 'src/users/vm/invoice.vm';
 import { UserSubscriptionVm } from 'src/users/vm/user-subscription.vm';
-import { Output } from 'src/common/output.decorator';
-import { User } from 'src/common/user.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 
 @ApiUseTags('Users')
 @UseGuards(AuthGuard('jwt'))
@@ -47,7 +47,7 @@ export class SubscriptionController {
   @Get('invoices')
   @ApiOperation({ title: 'Get User\'s Invoices' })
   @ApiOkResponse({ type: InvoiceVm, isArray: true })
-  @Output([InvoiceVm])
+  @Output(InvoiceVm)
   getInvoices(@User() user: IUser) {
     return this.userBilling.getInvoices(user);
   }

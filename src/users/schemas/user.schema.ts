@@ -147,11 +147,6 @@ export const UserSchema = new Schema({
  * Virtuals
  */
 UserSchema
-  .virtual('plan')
-  .get(function() {
-    return this.stripe.plan;
-  });
-UserSchema
   .virtual('hasPassword')
   .get(function() {
     return !!this.password;

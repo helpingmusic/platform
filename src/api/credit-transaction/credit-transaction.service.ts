@@ -73,5 +73,10 @@ export class CreditTransactionService extends EntityService<ICreditTransaction> 
       .exec();
   }
 
+  async removeAllowance(id: string) {
+    const a = await  this.allowanceModel.findById(id);
+    await a.update({ status: AllowanceStatuses.CANCELLED });
+    return a;
+  }
 
 }

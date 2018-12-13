@@ -10,8 +10,8 @@ import { INotificationSettings } from 'src/users/interfaces/notification-setting
 import { IUser } from 'src/users/interfaces/user.interface';
 import { UserNotificationsService } from 'src/users/services/user-notifications.service';
 import { NotificationSettingsVm } from 'src/users/vm/notification-settings.vm';
-import { Output } from 'src/common/output.decorator';
-import { User } from 'src/common/user.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 
 @Controller('users/me/notifications')
 @ApiUseTags('Users')
@@ -27,7 +27,7 @@ export class NotificationController {
   @Get()
   @ApiOperation({ title: 'Get User Notifications' })
   @ApiOkResponse({ type: NotificationVm, isArray: true })
-  @Output([NotificationVm])
+  @Output(NotificationVm)
   list(@User() user: IUser, @Query() q: { page: number }) {
     return this.notificationService.getForUser(String(user._id), q.page);
   }
@@ -50,7 +50,7 @@ export class NotificationController {
 
   @Put('read')
   @ApiOperation({ title: 'Mark Notification as read' })
-  @Output([NotificationVm])
+  @Output(NotificationVm)
   async markRead(@User() user: IUser, @Body() data: MarkNotificationsReadDto) {
     return this.notificationService.markRead(data, String(user._id));
   }

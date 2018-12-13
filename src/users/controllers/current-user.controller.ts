@@ -19,11 +19,11 @@ import { UpdateUserPhotoDto } from 'src/users/dto/update-user-photo.dto';
 import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 import { IUser } from 'src/users/interfaces/user.interface';
 import { UsersAuthService } from 'src/users/services/users-auth.service';
-import { Output } from 'src/common/output.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
 import { UsersService } from 'src/users/services/users.service';
 import { UserSelfVm } from 'src/users/vm/user-self.vm';
 import { IS3FileUpload } from 'src/core/storage/s3-file-upload.interface';
-import { User } from 'src/common/user.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 
 @ApiUseTags('Users')
 @UseGuards(AuthGuard('jwt'))

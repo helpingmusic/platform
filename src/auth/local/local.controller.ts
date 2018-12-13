@@ -2,10 +2,10 @@ import { Controller, Post, Request, Response, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiCreatedResponse, ApiImplicitBody, ApiOperation, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { LoginResponseDto } from 'src/auth/dto/login-response.dto';
-import { User } from 'src/common/user.decorator';
+import { User } from 'src/common/decorators/user.decorator';
 import { AuthService } from '../auth.service';
 import { LocalCredentialsDto } from './local-credentials.dto';
-import { Output } from 'src/common/output.decorator';
+import { Output } from 'src/common/decorators/output.decorator';
 
 @ApiUseTags('auth')
 @Controller('auth/local')

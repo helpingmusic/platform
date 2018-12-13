@@ -47,13 +47,14 @@ CreditTransactionSchema.virtual('amount')
     return this.startAmount - this.endAmount;
   });
 
-CreditTransactionSchema.pre('save', async function(next) {
+CreditTransactionSchema.pre('validate', async function(next) {
   if (!this.isNew) return next();
 
   await this.populate({ path: 'user', select: 'credits' }).execPopulate();
   this.set({ startAmount: this.get('user').credits });
   // Update user credit amount
   await this.get('user').update({ credits: this.get('endAmount') });
+  this.depopulate('user');
 
   return next();
 });
