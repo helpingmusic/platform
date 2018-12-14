@@ -15,7 +15,7 @@ import { TrackService } from './track.service';
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    MongooseModule.forFeature([{ name: 'Track', schema: TrackSchema }]),
+    MongooseModule.forFeature([{ name: 'Track', schema: TrackSchema, collection: 'songs' }]),
     SharedModule,
     MulterModule.registerAsync({
       imports: [StorageModule],
