@@ -1,11 +1,11 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { EventBus } from '@nestjs/cqrs';
 import { LogService } from 'src/shared/logger/log.service';
 import { ILogger } from 'src/shared/logger/logger.interface';
 import { StripeEventDto } from 'src/webhooks/stripe/stripe-event.dto';
 import { StripeEvent } from 'src/webhooks/stripe/stripe.event';
 
-@Controller('stripe')
+@Controller('webhooks/stripe')
 export class StripeController {
 
   log: ILogger;
@@ -17,8 +17,8 @@ export class StripeController {
     this.log = log.createLogger('stripe');
   }
 
-  @Get()
-  get(@Body() body: StripeEventDto) {
+  @Post()
+  event(@Body() body: StripeEventDto) {
 
     this.log.info(body.type);
 
