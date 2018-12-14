@@ -30,16 +30,16 @@ describe('Stripe Controller', () => {
     expect(ctrl).toBeDefined();
   });
 
-  it('should emit StripeEvents', function() {
-
-    ctrl.event({
-      object: {},
-      type: StripeEvents.CUSTOMER_UPDATED,
-    });
-
-    const event = new StripeEvent(StripeEvents.CUSTOMER_UPDATED, {});
-    expect(eventBusMock.publish).toBeCalledWith(event);
-
-  });
+  // it('should emit StripeEvents', function() {
+  //
+  //   ctrl.event({
+  //     object: {},
+  //     type: StripeEvents.CUSTOMER_UPDATED,
+  //   });
+  //
+  //   const event = new StripeEvent(StripeEvents.CUSTOMER_UPDATED, {});
+  //   expect(eventBusMock.publish).toBeCalledWith(event);
+  //
+  // });
 
 });
