@@ -18,7 +18,7 @@ export class StripeController {
   }
 
   @Post()
-  event(@Body() body: StripeEventDto) {
+  event(@Body() body: any) {
 
     this.log.info(body);
     this.log.info(body.type);
@@ -29,7 +29,6 @@ export class StripeController {
   }
 
 }
-
 
 const etst = {
   id: 'evt_1DhPN7EKyb0MHKeOoMP7excc',
