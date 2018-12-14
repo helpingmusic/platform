@@ -11,10 +11,25 @@ export class SyncCustomerHandler implements ICommandHandler<SyncCustomerCommand>
 
   async execute(cmd: SyncCustomerCommand, resolve: (value?) => void) {
     const { customer } = cmd;
+    console.log('sync customer', customer);
 
-    const updates = {
+    let updates: any = {
       'stripe.accountBalance': customer.account_balance,
     };
+
+    if (customer.subscriptions.data) {
+      const sub = customer.subscriptions.data
+        .sort((a, b) => a.created - b.created)
+        .pop();
+      updates = {
+        ...updates,
+        'stripe.subscriptionId': sub.id,
+        'stripe.plan': sub.plan.id,
+        'stripe.status': sub.status,
+        'stripe.trial_end': sub.trial_end ? new Date(sub.trial_end * 1000) : null,
+        'stripe.periodEnd': new Date(sub.current_period_end * 1000),
+      };
+    }
 
     const c = customer.default_source as cards.ICard;
     if (c && c.id) {
