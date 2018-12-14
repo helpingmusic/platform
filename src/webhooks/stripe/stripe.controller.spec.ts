@@ -32,7 +32,7 @@ describe('Stripe Controller', () => {
 
   it('should emit StripeEvents', function() {
 
-    ctrl.get({
+    ctrl.event({
       object: {},
       type: StripeEvents.CUSTOMER_UPDATED,
     });
