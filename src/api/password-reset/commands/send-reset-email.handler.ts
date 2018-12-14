@@ -14,17 +14,13 @@ export class SendResetEmailHandler implements ICommandHandler<SendResetEmailComm
   }
 
   async execute(cmd: SendResetEmailCommand, resolve: (value?) => void) {
-    resolve();
 
     const { passwordReset, token } = cmd;
     const u = await this.userService.getById(passwordReset.user);
 
     await this.email.send({
       template: EmailTemplates.FORGOT_PASSWORD,
-      to: [{
-        email: u.email,
-        name: u.name,
-      }],
+      to: [{ email: u.email, name: u.name }],
       content: {
         reset: passwordReset._id,
         token,

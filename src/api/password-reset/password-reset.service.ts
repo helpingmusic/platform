@@ -21,10 +21,10 @@ export class PasswordResetService {
   }
 
   /**
-   * Generate 16 character random string
+   * Generate 32 character random string
    */
   private genToken(): string {
-    return crypto.randomBytes(8).toString('hex');
+    return crypto.randomBytes(32).toString('hex');
   }
 
   /**
@@ -87,7 +87,7 @@ export class PasswordResetService {
       });
     }
 
-    await this.userService.update(pr.user, { password: newPassword });
+    await this.userService.update(String(pr.user), { password: newPassword });
     await pr.update({ usedAt: new Date() });
 
   }

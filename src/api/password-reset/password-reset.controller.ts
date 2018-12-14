@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post, Query } from '@nestjs/common';
 import { ApiOperation, ApiUseTags } from '@nestjs/swagger';
 import { PasswordResetDto } from 'src/api/password-reset/password-reset.dto';
 import { PasswordResetService } from 'src/api/password-reset/password-reset.service';
@@ -20,8 +20,12 @@ export class PasswordResetController {
 
   @Post(':id')
   @ApiOperation({ title: 'Update user password from user token' })
-  updatePassword(@Param('id') resetId: string, @Body() body: PasswordResetDto) {
-    return this.resetService.resetPassword(resetId, body.token, body.newPassword);
+  updatePassword(
+    @Param('id') resetId: string,
+    @Query('token') token: string,
+    @Body() body: PasswordResetDto,
+  ) {
+    return this.resetService.resetPassword(resetId, token, body.password);
   }
 
 }

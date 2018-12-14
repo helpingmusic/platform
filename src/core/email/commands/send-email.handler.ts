@@ -24,15 +24,17 @@ export class SendEmailHandler implements ICommandHandler<SendEmailCommand> {
   ) {
     this.log = log.createLogger('mail');
     this.mailer = new Mandrill(config.get('MANDRILL_KEY'));
-    this.templateData.homeurl = config.get('DOMAIN');
+    console.log(config.get('APP_ORIGIN'));
+    this.templateData.homeurl = config.get('APP_ORIGIN');
   }
 
   async execute(cmd: SendEmailCommand, done: (value?) => void) {
 
     const { data }: { data: SendEmailDto } = cmd;
 
-    const templateContent = Object.keys({ ...this.templateData, ...data.content})
-      .map(name => ({ name, content: data.content[name] }));
+    const d = { ...this.templateData, ...data.content};
+    const templateContent = Object.keys(d)
+      .map(name => ({ name, content: d[name] }));
 
     const mail = {
       template_name: data.template,

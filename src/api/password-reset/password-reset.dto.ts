@@ -3,13 +3,9 @@ import { IsString, MinLength } from 'class-validator';
 
 export class PasswordResetDto {
 
-  @ApiModelProperty()
-  @IsString()
-  readonly token: string;
-
-  @ApiModelProperty()
+  @ApiModelProperty({ description: 'New Password' })
   @IsString()
   @MinLength(6)
-  readonly newPassword: string;
+  readonly password: string;
 
 }

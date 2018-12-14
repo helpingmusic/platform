@@ -1,14 +1,13 @@
 import bcrypt from 'bcrypt';
 import { Schema } from 'mongoose';
 import * as val from 'mongoose-validators';
-import { NotificationTypes } from 'src/api/notifications/notification-types.enum';
 import { AuthProviders } from 'src/auth/auth-providers.enum';
 import * as constants from 'src/common/constants';
+import { moment } from 'src/common/vendor';
 import { PASSWORD_SALT_ROUNDS } from 'src/users/constants';
 import { UserBillingSchema } from 'src/users/schemas/billing.schema';
 import { NotificationSettingsSchema } from 'src/users/schemas/notification-settings.schema';
 import { WebPushSubscriptionSchema } from 'src/users/schemas/web-push-subscription.schema';
-import { moment } from 'src/common/vendor';
 
 const { membershipTiers, authTypes } = constants;
 
@@ -94,13 +93,13 @@ export const UserSchema = new Schema({
 
   personal_links: {
     site: { type: String, set: (v) => v || null },
-    facebook: { type: String, set: (v) => v || null},
-    twitter: { type: String, set: (v) => v || null},
-    linkedin: { type: String, set: (v) => v || null},
-    youtube: { type: String, set: (v) => v || null},
-    soundcloud: { type: String, set: (v) => v || null},
-    instagram: { type: String, set: (v) => v || null},
-    spotify: { type: String, set: (v) => v || null},
+    facebook: { type: String, set: (v) => v || null },
+    twitter: { type: String, set: (v) => v || null },
+    linkedin: { type: String, set: (v) => v || null },
+    youtube: { type: String, set: (v) => v || null },
+    soundcloud: { type: String, set: (v) => v || null },
+    instagram: { type: String, set: (v) => v || null },
+    spotify: { type: String, set: (v) => v || null },
   },
 
   referralCode: {
@@ -108,10 +107,6 @@ export const UserSchema = new Schema({
   },
 
   last_active: {
-    type: Date,
-    default: () => new Date(),
-  },
-  active_until: {
     type: Date,
     default: () => new Date(),
   },
@@ -203,6 +198,12 @@ UserSchema
   });
 
 UserSchema
+  .virtual('active_until')
+  .get(function() {
+    return this.stripe && this.stripe.periodEnd;
+  });
+
+UserSchema
   .virtual('name')
   .get(function() {
     return this.first_name + ' ' + this.last_name;
@@ -234,27 +235,6 @@ UserSchema
     if (!password) return true;
     return password.length;
   }, 'Password cannot be blank');
-
-// Validate email is not taken
-// UserSchema
-//   .path('email')
-//   .validate(async function(email, cb) {
-//     return cb(true);
-//
-//     const self = this;
-//     if (!email) return cb(true);
-//
-//     const otherUser = await this.constructor.findOne({ email }).exec();
-//
-//     if (otherUser) {
-//       if (self.id === otherUser.id) {
-//         return cb(true);
-//       }
-//       return cb(false);
-//     }
-//     return cb(true);
-//
-//   }, 'The specified email address is already in use.');
 
 // Hash password
 UserSchema
