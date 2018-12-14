@@ -18,7 +18,7 @@ export class StripeController {
   }
 
   @Post()
-  event(@Body() body: StripeEventDto) {
+  event(@Body() body: any) {
 
     this.log.info(body);
     this.log.info(body.data.type);
