@@ -20,10 +20,11 @@ export class StripeController {
   @Post()
   event(@Body() body: StripeEventDto) {
 
-    this.log.info(body.type);
+    this.log.debug(body);
+    this.log.info(body.data.type);
 
     this.eventBus.publish(
-      new StripeEvent(body.type, body.object),
+      new StripeEvent(body.data.type, body.data.object),
     );
 
   }
