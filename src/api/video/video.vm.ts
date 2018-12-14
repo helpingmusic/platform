@@ -18,7 +18,7 @@ export class VideoVm extends DocumentVm {
 
   @ApiModelProperty()
   @Expose()
-  url: string;
+  href: string;
 
   @ApiModelProperty()
   @Expose()

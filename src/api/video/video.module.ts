@@ -9,7 +9,7 @@ import { VideoService } from './video.service';
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    MongooseModule.forFeature([{ name: 'Video', schema: VideoSchema }]),
+    MongooseModule.forFeature([{ name: 'Media', schema: VideoSchema }]),
   ],
   controllers: [VideoController],
   providers: [

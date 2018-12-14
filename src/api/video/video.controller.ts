@@ -46,7 +46,6 @@ export class VideoController {
   })
 
   @Get()
-  @Roles(UserRoles.ADMIN)
   @Output(VideoVm)
   index(): Promise<IVideo[]> {
     return this.videoService.index();

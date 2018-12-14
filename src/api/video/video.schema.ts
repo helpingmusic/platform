@@ -13,6 +13,8 @@ export const VideoSchema = new Schema({
     required: true,
   },
 
+  href: String,
+
   type: {
     type: String,
     required: true,
