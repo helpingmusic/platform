@@ -13,6 +13,7 @@ import { CreditTransactionModule } from './credit-transaction/credit-transaction
 import { IssueModule } from './issue/issue.module';
 import { PasswordResetModule } from './password-reset/password-reset.module';
 import { ThreadModule } from './thread/thread.module';
+import { CouponModule } from './coupon/coupon.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ThreadModule } from './thread/thread.module';
     PostModule,
     ReviewModule,
     ReportModule,
+    CouponModule,
   ],
   providers: [],
 })
