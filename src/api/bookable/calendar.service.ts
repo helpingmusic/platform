@@ -17,10 +17,11 @@ export class CalendarService {
   ) {
     this.log = log.createLogger('calendar');
 
+    const gcal = config.getGoogleSA();
     this.calendar = new CalendarAPI({
-      key: config.get('GOOGLE_SA_PKEY'),
-      serviceAcctId: config.get('GOOGLE_SA_EMAIL'),
       timezone: 'UTC-06:00',
+      serviceAcctId: gcal.client_email,
+      key: gcal.private_key,
     });
   }
 

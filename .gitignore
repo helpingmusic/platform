@@ -2,6 +2,4 @@
 local.env
 dist
 node_modules
-src/legacy
-helpingmusic.sa.json
 .idea

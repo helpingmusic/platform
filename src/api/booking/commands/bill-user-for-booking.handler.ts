@@ -6,6 +6,7 @@ import { UsersBillingService } from 'src/users/services/users-billing.service';
 import { UsersService } from 'src/users/services/users.service';
 import { CommandResult } from 'src/common/abstract/command-result';
 import { moment } from 'src/common/vendor';
+import { IStripeError } from 'stripe';
 
 @CommandHandler(BillUserForBookingCommand)
 export class BillUserForBookingHandler implements ICommandHandler<BillUserForBookingCommand> {
@@ -38,8 +39,9 @@ export class BillUserForBookingHandler implements ICommandHandler<BillUserForBoo
         { description: `${booking.duration} hour session at ${bookable.location}` },
       );
     } catch (e) {
+      const error = e as IStripeError;
       resolve(
-        new CommandResult(false, e),
+        new CommandResult(false, error.message),
       );
       return;
     }
