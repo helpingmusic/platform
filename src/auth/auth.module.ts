@@ -14,7 +14,9 @@ import { LocalController } from './local/local.controller';
     SharedModule,
     JwtModule.register({
       secretOrPrivateKey: process.env.SESSION_SECRET,
-      signOptions: { expiresIn: 3600 },
+      signOptions: {
+        expiresIn: 60 * 60 * 24 * 30, // 30 days
+      },
     }),
     UsersModule,
   ],
