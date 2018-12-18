@@ -19,6 +19,7 @@ const testBookable = {
     [mp.COWRITE_1]: 2500,
     [mp.COWORK_1]: 2500,
     [mp.PRODUCTION_1]: 2000,
+    'pro-mth-2': 2000,
   },
 
   hours: {
@@ -29,6 +30,7 @@ const testBookable = {
     [mp.COWRITE_1]: at.businessHours,
     [mp.COWORK_1]: at.businessHours,
     [mp.PRODUCTION_1]: at.all,
+    'pro-mth-2': at.all,
   },
 };
 
@@ -52,6 +54,7 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: 5000,
       [mp.COWORK_1]: 5000,
       [mp.PRODUCTION_1]: 4000,
+      'pro-mth-2': 4000,
     },
     hours: {
       [mp.PRO]: at.all,
@@ -61,6 +64,7 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: at.businessHours,
       [mp.COWORK_1]: at.businessHours,
       [mp.PRODUCTION_1]: at.all,
+      'pro-mth-2': at.all,
     },
 
   }, {
@@ -79,6 +83,7 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: 2500,
       [mp.COWORK_1]: 2500,
       [mp.PRODUCTION_1]: 2000,
+      'pro-mth-2': 2000,
     },
     hours: {
       [mp.PRO]: at.all,
@@ -88,6 +93,7 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: at.businessHours,
       [mp.COWORK_1]: at.businessHours,
       [mp.PRODUCTION_1]: at.all,
+      'pro-mth-2': at.all,
     },
 
   }, {
@@ -101,6 +107,7 @@ export const Bookables: Array<IBookable> = [
     rates: {
       [mp.PRO]: 2000,
       [mp.PRODUCTION_1]: 3000,
+      'pro-mth-2': 2000,
     },
     hours: {
       [mp.PRO]: at.all,
@@ -110,6 +117,7 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: at.businessHours,
       [mp.COWORK_1]: at.businessHours,
       [mp.PRODUCTION_1]: at.all,
+      'pro-mth-2': at.all,
     },
 
   }, {
@@ -125,13 +133,14 @@ export const Bookables: Array<IBookable> = [
       'evolvemusic.org_lekq9a1appp4717ushpbajj3qs@group.calendar.google.com',
     ],
     rates: {
-      [mp.PRO]: 10000,
+      [mp.PRO]: 7500,
       [mp.ONLINE]: 22000,
       [mp.COMMUNITY_1]: 15000,
       [mp.CREATIVE_1]: 10000,
       [mp.COWRITE_1]: 10000,
       [mp.COWORK_1]: 10000,
       [mp.PRODUCTION_1]: 7500,
+      'pro-mth-2': 7500,
     },
     hours: {
       [mp.PRO]: at.all,
@@ -141,6 +150,7 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: at.all,
       [mp.COWORK_1]: at.all,
       [mp.PRODUCTION_1]: at.all,
+      'pro-mth-2': at.all,
     },
   },
 ];
