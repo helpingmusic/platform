@@ -19,12 +19,12 @@ export const AvailabilityTypes = {
   // Only allow during business hours
   businessHours: {
     sunday: [new TimeRange(11, 23)],
-    monday: [new TimeRange(9, 18)],
-    tuesday: [new TimeRange(9, 18)],
-    wednesday: [new TimeRange(9, 18)],
-    thursday: [new TimeRange(9, 18)],
-    friday: [new TimeRange(9, 18)],
-    saturday: [new TimeRange(9, 19)],
+    monday: [new TimeRange(8, 18)],
+    tuesday: [new TimeRange(8, 18)],
+    wednesday: [new TimeRange(8, 18)],
+    thursday: [new TimeRange(8, 18)],
+    friday: [new TimeRange(8, 18)],
+    saturday: [new TimeRange(8, 19)],
   },
   // 24/7
   all: {
@@ -37,4 +37,3 @@ export const AvailabilityTypes = {
     saturday: [new TimeRange(0, 24)],
   },
 };
-

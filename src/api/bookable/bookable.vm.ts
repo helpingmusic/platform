@@ -18,6 +18,15 @@ class Rates {
   readonly [mp.COWORK_1]: number;
   @Expose()
   readonly [mp.PRODUCTION_1]: number;
+
+  @Expose()
+  'pro-mth-1': number;
+  @Expose()
+  'pro-mth-2': number;
+  @Expose()
+  'pro-yr-1': number;
+  @Expose()
+  'pro-yr-2': number;
 }
 
 class DayTimes {
