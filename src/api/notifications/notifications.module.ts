@@ -8,7 +8,6 @@ import { NotificationSagas } from 'src/api/notifications/notification.sagas';
 import { NotificationSchema } from 'src/api/notifications/schemas/notification.schema';
 import { EmailModule } from 'src/core/email/email.module';
 import { SharedModule } from 'src/shared/shared.module';
-import { UsersModule } from 'src/users/users.module';
 import { NotificationsController } from './notifications.controller';
 import { NotificationsService } from './notifications.service';
 

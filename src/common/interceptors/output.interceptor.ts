@@ -30,7 +30,7 @@ export class OutputInterceptor implements NestInterceptor {
     return call$.pipe(
       map(data => {
         const flat = [].concat(data)
-          .map(d => d.toObject ? d.toObject() : d);
+          .map(d => (d && d.toObject) ? d.toObject() : d);
 
         const result = Array.isArray(data) ? flat : flat[0];
 

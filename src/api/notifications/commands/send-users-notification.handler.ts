@@ -31,7 +31,8 @@ export class SendUsersNotificationHandler implements ICommandHandler<SendUsersNo
     await notification.populate({
       path: 'users.user',
       model: 'User',
-    });
+    })
+      .execPopulate();
 
     await Promise.all(
       notification.users.map(async (u) => {

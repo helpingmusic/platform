@@ -24,7 +24,6 @@ export class SendEmailHandler implements ICommandHandler<SendEmailCommand> {
   ) {
     this.log = log.createLogger('mail');
     this.mailer = new Mandrill(config.get('MANDRILL_KEY'));
-    console.log(config.get('APP_ORIGIN'));
     this.templateData.homeurl = config.get('APP_ORIGIN');
   }
 
