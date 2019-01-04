@@ -213,7 +213,7 @@ UserSchema
 UserSchema
   .virtual('isActive')
   .get(function() {
-    if (this.stripe.status === 'canceled') return false;
+    if (this.stripe && this.stripe.status === 'canceled') return false;
 
     if (this.active_until) {
       return moment().isBefore(this.active_until) && this.profileComplete;
