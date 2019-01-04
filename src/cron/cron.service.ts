@@ -40,7 +40,7 @@ export class CronService extends NestSchedule {
       .subscribe();
   }
 
-  @Cron('0 0 4 * *')
+  @Cron('1 * * * * *')
   async runCreditAllowances() {
     this.runJob({ cmd: 'run-credit-allowances' });
   }

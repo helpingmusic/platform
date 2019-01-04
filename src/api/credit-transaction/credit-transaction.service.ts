@@ -55,14 +55,14 @@ export class CreditTransactionService extends EntityService<ICreditTransaction> 
     return a.save();
   }
 
-  findPendingAllowances(): Promise<IAllowanceTransaction[]> {
-    return this.allowanceModel
-      .find({
-        runOn: moment().format('YYYY-MM-DD'),
-        status: 'pending',
-      })
+  async findPendingAllowances(): Promise<IAllowanceTransaction[]> {
+    const allPending = await this.allowanceModel
+      .find({ status: 'pending' })
       .populate('user', 'credits')
       .exec();
+
+    // grab transactions that should have run by now
+    return allPending.filter(at => moment().isAfter(at.runOn));
   }
 
   findLastAllowanceForUser(user: string) {
