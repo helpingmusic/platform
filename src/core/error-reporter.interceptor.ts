@@ -44,6 +44,10 @@ export class ErrorReporterInterceptor implements NestInterceptor {
 
   captureError(err: any, context: ExecutionContext) {
 
+    if (err.status && err.status < 500) { // user error, don't report
+      return;
+    }
+
     this.log.error(err);
     this.log.error(err.stack);
 
