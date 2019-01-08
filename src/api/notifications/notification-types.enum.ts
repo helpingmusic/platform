@@ -1,7 +1,7 @@
 export enum NotificationTypes {
   ADMIN_REPORT = 'admin.report',
-  ADMIN_ISSUE = 'Admin.issue',
-  ADMIN_APPLICATIOn = 'admin.application',
+  ADMIN_ISSUE = 'admin.issue',
+  ADMIN_APPLICATION = 'admin.application',
   ADMIN_SIGNUP = 'admin.signup',
   ADMIN_COMMITMENT = 'admin.commitment',
 
