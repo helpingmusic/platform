@@ -42,6 +42,31 @@ const testBookable = {
   },
 };
 
+function forOldOnline(value) {
+  return {
+    'online-1': value,
+    'online-mth-2': value,
+    'online-yr-2': value,
+  };
+}
+
+function forOldCommunity(value) {
+  return {
+    'community-mth-2': value,
+    'community-yr-2': value,
+  };
+}
+
+function forOldPro(value) {
+  return {
+    'pro-1': value,
+    'pro-mth-1': value,
+    'pro-mth-2': value,
+    'pro-yr-1': value,
+    'pro-yr-2': value,
+  };
+}
+
 export const Bookables: Array<IBookable> = [
   ...(process.env.NODE_ENV === 'production' ? [] : [testBookable]),
 
@@ -63,23 +88,22 @@ export const Bookables: Array<IBookable> = [
       [mp.COWORK_1]: 5000,
       [mp.PRODUCTION_1]: 4000,
 
-      'pro-mth-1': 3000,
-      'pro-mth-2': 3000,
-      'pro-yr-1': 3000,
-      'pro-yr-2': 3000,
+      ...forOldOnline(90),
+      ...forOldCommunity(90),
+      ...forOldPro(3000),
     },
     hours: {
       [mp.PRO]: at.all,
       [mp.ONLINE]: at.businessHours,
       [mp.COMMUNITY_1]: at.businessHours,
-      [mp.CREATIVE_1]: at.businessHours,
-      [mp.COWRITE_1]: at.businessHours,
-      [mp.COWORK_1]: at.businessHours,
+      [mp.CREATIVE_1]: at.all,
+      [mp.COWRITE_1]: at.all,
+      [mp.COWORK_1]: at.all,
       [mp.PRODUCTION_1]: at.all,
-      'pro-mth-1': at.all,
-      'pro-mth-2': at.all,
-      'pro-yr-1': at.all,
-      'pro-yr-2': at.all,
+
+      ...forOldOnline(at.businessHours),
+      ...forOldCommunity(at.businessHours),
+      ...forOldPro(at.all),
     },
 
   }, {
@@ -98,23 +122,23 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: 2500,
       [mp.COWORK_1]: 2500,
       [mp.PRODUCTION_1]: 2000,
-      'pro-mth-1': 1000,
-      'pro-mth-2': 1000,
-      'pro-yr-1': 1000,
-      'pro-yr-2': 1000,
+
+      ...forOldOnline(4500),
+      ...forOldCommunity(4500),
+      ...forOldPro(1000),
     },
     hours: {
       [mp.PRO]: at.all,
       [mp.ONLINE]: at.businessHours,
       [mp.COMMUNITY_1]: at.businessHours,
-      [mp.CREATIVE_1]: at.businessHours,
-      [mp.COWRITE_1]: at.businessHours,
-      [mp.COWORK_1]: at.businessHours,
+      [mp.CREATIVE_1]: at.all,
+      [mp.COWRITE_1]: at.all,
+      [mp.COWORK_1]: at.all,
       [mp.PRODUCTION_1]: at.all,
-      'pro-mth-1': at.all,
-      'pro-mth-2': at.all,
-      'pro-yr-1': at.all,
-      'pro-yr-2': at.all,
+
+      ...forOldOnline(at.businessHours),
+      ...forOldCommunity(at.businessHours),
+      ...forOldPro(at.all),
     },
 
   }, {
@@ -128,23 +152,14 @@ export const Bookables: Array<IBookable> = [
     rates: {
       [mp.PRO]: 2000,
       [mp.PRODUCTION_1]: 3000,
-      'pro-mth-1': 2000,
-      'pro-mth-2': 2000,
-      'pro-yr-1': 2000,
-      'pro-yr-2': 2000,
+
+      ...forOldPro(2000),
     },
     hours: {
       [mp.PRO]: at.all,
-      [mp.ONLINE]: at.businessHours,
-      [mp.COMMUNITY_1]: at.businessHours,
-      [mp.CREATIVE_1]: at.businessHours,
-      [mp.COWRITE_1]: at.businessHours,
-      [mp.COWORK_1]: at.businessHours,
       [mp.PRODUCTION_1]: at.all,
-      'pro-mth-1': at.all,
-      'pro-mth-2': at.all,
-      'pro-yr-1': at.all,
-      'pro-yr-2': at.all,
+
+      ...forOldPro(at.all),
     },
 
   }, {
@@ -171,6 +186,10 @@ export const Bookables: Array<IBookable> = [
       'pro-mth-2': 7500,
       'pro-yr-1': 7500,
       'pro-yr-2': 7500,
+
+      ...forOldOnline(22000),
+      ...forOldCommunity(15000),
+      ...forOldPro(7500),
     },
     hours: {
       [mp.PRO]: at.all,
@@ -180,10 +199,10 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: at.all,
       [mp.COWORK_1]: at.all,
       [mp.PRODUCTION_1]: at.all,
-      'pro-mth-1': at.all,
-      'pro-mth-2': at.all,
-      'pro-yr-1': at.all,
-      'pro-yr-2': at.all,
+
+      ...forOldOnline(at.all),
+      ...forOldCommunity(at.all),
+      ...forOldPro(at.all),
     },
   },
 ];
