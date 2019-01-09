@@ -1,7 +1,19 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-import { Expose } from 'class-transformer';
+import { Expose, Transform, Type } from 'class-transformer';
 import { MembershipType } from 'src/common/constants';
 import { DocumentVm } from 'src/common/abstract/document.vm';
+
+@Expose()
+class PersonalLinksVm {
+  site: string;
+  facebook: string;
+  twitter: string;
+  linkedin: string;
+  youtube: string;
+  soundcloud: string;
+  instagram: string;
+  spotify: string;
+}
 
 export class UserProfileVm extends DocumentVm {
   @ApiModelProperty()
@@ -66,9 +78,8 @@ export class UserProfileVm extends DocumentVm {
 
   @ApiModelProperty()
   @Expose()
-  readonly personal_links: {
-    [media: string]: string;
-  };
+  @Type(() => PersonalLinksVm)
+  readonly personal_links: PersonalLinksVm;
 
   @ApiModelProperty()
   @Expose()
