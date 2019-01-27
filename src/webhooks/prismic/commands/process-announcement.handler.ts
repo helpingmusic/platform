@@ -12,6 +12,9 @@ export class ProcessAnnouncementHandler implements ICommandHandler<ProcessAnnoun
   async execute(cmd: ProcessAnnouncementCommand, resolve: (value?) => void) {
     const { doc } = cmd;
 
+    // If old announcement is created, don't create locally because it will blast notification
+    const skipCreate = doc.data.originally_published && moment().subtract(2, 'day').isAfter(doc.data.originally_published);
+
     const body = {
       title: RichText.asText(doc.data.title),
       body: RichText.asText(doc.data.body),
@@ -22,7 +25,7 @@ export class ProcessAnnouncementHandler implements ICommandHandler<ProcessAnnoun
     const [existing] = await this.announcements.find({ cmsId: doc.id });
     if (existing) {
       await this.announcements.update(existing, body);
-    } else {
+    } else if (!skipCreate) {
       await this.announcements.create({ ...body, cmsId: doc.id });
     }
 
