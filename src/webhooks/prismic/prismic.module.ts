@@ -15,6 +15,7 @@ import { CmsService } from './cms.service';
   controllers: [PrismicController],
   providers: [
     CmsService,
+    ...CommandHandlers,
     PrismicSagas,
   ],
 })

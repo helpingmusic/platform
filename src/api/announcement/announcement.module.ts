@@ -22,6 +22,7 @@ import { AnnouncementService } from './announcement.service';
     UsersModule,
   ],
   controllers: [AnnouncementController],
+  exports: [AnnouncementService],
   providers: [
     AnnouncementService,
     AnnouncementEvents,
