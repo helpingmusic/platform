@@ -1,5 +1,6 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
+import { UsersBillingService } from 'src/users/services/users-billing.service';
 import { IUser } from '../interfaces/user.interface';
 import { UsersService } from '../services/users.service';
 import { UserSelfVm } from '../vm/user-self.vm';
@@ -21,7 +22,9 @@ describe('Users Controller', () => {
           useValue: {},
         },
       ],
-    }).compile();
+    })
+      .overrideProvider(UsersBillingService).useValue({})
+      .compile();
   });
 
   beforeEach(() => {
@@ -31,26 +34,6 @@ describe('Users Controller', () => {
 
   it('should be defined', () => {
     expect(ctrl).toBeDefined();
-  });
-
-  describe('#me', () => {
-    const id = '123';
-    let res;
-
-    beforeAll(async () => {
-      jest.spyOn(usersService, 'getById')
-        .mockImplementationOnce(() => ({} as IUser));
-      // res = await ctrl.me({ user: { _id: id } });
-    });
-
-    it('should call user service with current user id', async function() {
-      expect(usersService.getById).toHaveBeenCalledWith(id);
-    });
-
-    it('should return a UserSelfVm instance', async function() {
-      expect(res).toBeInstanceOf(UserSelfVm);
-    });
-
   });
 
 });

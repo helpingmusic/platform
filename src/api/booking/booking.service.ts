@@ -44,8 +44,7 @@ export class BookingService {
   async create(b: CreateBookingDto): Promise<IBooking> {
 
     // verify bookable
-    const bookables = await this.bookableService.index();
-    const bookable = bookables.find(bo => bo._id === b.bookable);
+    const bookable = this.bookableService.findById(b.bookable);
     if (!bookable) {
       throw new BadDataException({
         field: 'bookable',

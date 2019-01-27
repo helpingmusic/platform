@@ -65,7 +65,6 @@ describe('BillUserForBookingHandler', () => {
     handler = module.get<BillUserForBookingHandler>(BillUserForBookingHandler);
   });
 
-
   it('should be truthy', function() {
     expect(handler).toBeTruthy();
   });
@@ -102,7 +101,7 @@ describe('BillUserForBookingHandler', () => {
 
   describe('When payment fails', () => {
     beforeAll(async () => {
-      userBillingMock.charge.mockImplementationOnce(() => Promise.reject({}));
+      userBillingMock.charge.mockImplementationOnce(() => Promise.reject(new Error('Bad card')));
       const cmd = new BillUserForBookingCommand(userId, booking);
       await handler.execute(cmd, resolveMock);
     });

@@ -1,5 +1,6 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
+import { ThreadService } from 'src/api/thread/thread.service';
 import { PostService } from './post.service';
 
 describe('Post Service', () => {
@@ -19,6 +20,7 @@ describe('Post Service', () => {
         },
       ],
     })
+      .overrideProvider(ThreadService).useValue({})
       .compile();
   });
 

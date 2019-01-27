@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { CreditTransactionService } from 'src/api/credit-transaction/credit-transaction.service';
 import { LoggerModule } from 'src/shared/logger/logger.module';
 import { UsersBillingService } from './users-billing.service';
 
@@ -8,7 +9,9 @@ describe('UsersBillingService', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [LoggerModule],
       providers: [UsersBillingService],
-    }).compile();
+    })
+      .overrideProvider(CreditTransactionService).useValue({})
+      .compile();
     service = module.get<UsersBillingService>(UsersBillingService);
   });
   it('should be defined', () => {

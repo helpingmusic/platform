@@ -1,6 +1,7 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreateModelMock } from 'fixtures/mocks/model.mock';
+import { UsersBillingService } from 'src/users/services/users-billing.service';
 import { UsersService } from './users.service';
 
 describe('UsersService', () => {
@@ -13,7 +14,9 @@ describe('UsersService', () => {
         UsersService,
         { provide: getModelToken('User'), useValue: userModelMock },
       ],
-    }).compile();
+    })
+      .overrideProvider(UsersBillingService).useValue({})
+      .compile();
     service = module.get<UsersService>(UsersService);
   });
   it('should be defined', () => {

@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { UsersService } from 'src/users/services/users.service';
 import { AdminController } from './admin.controller';
 
 describe('Admin Controller', () => {
@@ -6,7 +7,9 @@ describe('Admin Controller', () => {
   beforeAll(async () => {
     module = await Test.createTestingModule({
       controllers: [AdminController],
-    }).compile();
+    })
+      .overrideProvider(UsersService).useValue({})
+      .compile();
   });
   it('should be defined', () => {
     const controller: AdminController = module.get<AdminController>(AdminController);

@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { UsersBillingService } from 'src/users/services/users-billing.service';
 import { SubscriptionController } from './subscription.controller';
 
 describe('Subscription Controller', () => {
@@ -6,7 +7,9 @@ describe('Subscription Controller', () => {
   beforeAll(async () => {
     module = await Test.createTestingModule({
       controllers: [SubscriptionController],
-    }).compile();
+    })
+      .overrideProvider(UsersBillingService).useValue({})
+      .compile();
   });
   it('should be defined', () => {
     const controller: SubscriptionController = module.get<SubscriptionController>(SubscriptionController);

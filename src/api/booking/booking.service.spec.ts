@@ -28,8 +28,9 @@ describe('BookingService', () => {
   };
 
   const bookableService = {
+    index: jest.fn().mockResolvedValue(Bookables),
     findById: jest.fn().mockImplementation(id => {
-      if (testBookable.id === id) return testBookable;
+      if (testBookable._id === id) return testBookable;
       return null;
     }),
     userCanBookTime: jest.fn().mockImplementation(() => true),
@@ -74,7 +75,7 @@ describe('BookingService', () => {
       start: moment().hour(10).minute(0).second(0).toDate(),
       duration: 3,
       booker: userId,
-      bookable: bookable.id,
+      bookable: bookable._id,
     };
 
     describe('When passing valid data', () => {
@@ -96,7 +97,7 @@ describe('BookingService', () => {
       it('should throw BadDataException', async () => {
         const err: BadDataException = await service.create(data).catch(e => e);
         expect(err).toBeInstanceOf(BadDataException);
-        expect(err.message.message).toHaveProperty('field', 'bookable');
+        expect(err.message).toHaveProperty('field', 'bookable');
       });
       it('should not create booking', async () => {
         await expect(service.create(data)).rejects.toThrow();
@@ -111,7 +112,7 @@ describe('BookingService', () => {
       it('should throw BadDataException', async () => {
         const err = await service.create(data).catch(e => e);
         expect(err).toBeInstanceOf(BadDataException);
-        expect(err.message.message).toHaveProperty('field', 'startTime');
+        expect(err.message).toHaveProperty('field', 'startTime');
       });
       it('should not create booking', async () => {
         await expect(service.create(data)).rejects.toThrow();
@@ -126,7 +127,7 @@ describe('BookingService', () => {
       it('should throw BadDataException', async () => {
         const err = await service.create(data).catch(e => e);
         expect(err).toBeInstanceOf(BadDataException);
-        expect(err.message.message).toHaveProperty('field', 'startTime');
+        expect(err.message).toHaveProperty('field', 'startTime');
       });
       it('should not create booking', async () => {
         await expect(service.create(data)).rejects.toThrow();
@@ -145,7 +146,7 @@ describe('BookingService', () => {
       it('should throw BadDataException', async () => {
         const err = await service.create(data).catch(e => e);
         expect(err).toBeInstanceOf(BadDataException);
-        expect(err.message.message).toHaveProperty('field', 'payment');
+        expect(err.message).toHaveProperty('field', 'payment');
       });
       it('should remove created booking', async () => {
         await expect(service.create(data)).rejects.toThrow();

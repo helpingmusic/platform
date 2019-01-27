@@ -42,7 +42,7 @@ describe('BookableService', () => {
           const s = moment(start, ['ha']).day(3);
           const e = moment(end, ['ha']).day(3);
           if (e.isBefore(s)) e.add(1, 'day');
-          expect(service.userCanBookTime(bookable.id, tier, s, e)).toBe(allow);
+          expect(service.userCanBookTime(bookable._id, tier, s, e)).toBe(allow);
         });
       });
     });
@@ -62,7 +62,7 @@ describe('BookableService', () => {
           const s = moment(start, ['ha']).day(3);
           const e = moment(end, ['ha']).day(3);
           if (e.isBefore(s)) e.add(1, 'day');
-          expect(service.userCanBookTime(bookable.id, tier, s, e)).toBe(allow);
+          expect(service.userCanBookTime(bookable._id, tier, s, e)).toBe(allow);
         });
       });
     });
