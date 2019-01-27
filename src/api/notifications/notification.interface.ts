@@ -6,8 +6,8 @@ export interface INotification extends Document {
 
   users: Array<{
     user: string;
-    read: boolean;
-    readAt: Date;
+    read?: boolean;
+    readAt?: Date;
   }>;
 
   title: string;

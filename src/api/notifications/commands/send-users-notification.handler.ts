@@ -31,6 +31,9 @@ export class SendUsersNotificationHandler implements ICommandHandler<SendUsersNo
     await notification.populate({
       path: 'users.user',
       model: 'User',
+      populate: {
+        path:  'notifications',
+      },
     })
       .execPopulate();
 
