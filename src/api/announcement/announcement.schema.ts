@@ -12,6 +12,8 @@ export const AnnouncementSchema = new Schema({
     required: true,
   },
 
+  cmsId: String,
+
 }, {
   timestamps: {
     createdAt: 'created_at',
