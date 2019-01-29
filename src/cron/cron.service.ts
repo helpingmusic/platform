@@ -40,12 +40,12 @@ export class CronService extends NestSchedule {
       .subscribe();
   }
 
-  @Cron('1 * * * * *')
+  @Cron('0 1 * * *')
   async runCreditAllowances() {
     this.runJob({ cmd: 'run-credit-allowances' });
   }
 
-  @Cron('0 * * * *')
+  @Cron('0 0 * * *')
   async syncUserIndex() {
     this.runJob({ cmd: 'sync-user-index' });
   }
