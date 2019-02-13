@@ -1,14 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ConfigModule } from 'src/shared/config/config.module';
+import { AlgoliaToken } from 'src/core/search/algolia.provider';
 import { SearchService } from './search.service';
 
 describe('SearchService', () => {
   let service: SearchService;
+
+  const clientMock = {
+    initIndex: () => '',
+    set: () => {},
+  };
+
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [ConfigModule],
       providers: [SearchService],
-    }).compile();
+    })
+      .overrideProvider(AlgoliaToken).useValue(clientMock)
+      .compile();
     service = module.get<SearchService>(SearchService);
   });
   it('should be defined', () => {
