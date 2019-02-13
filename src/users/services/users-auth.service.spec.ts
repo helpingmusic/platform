@@ -44,13 +44,13 @@ describe('UsersAuthService', () => {
       newPassword: 'new',
     };
 
-    it('should update user when authenticated', async function() {
+    it('should update user when authenticated', async () => {
       jest.spyOn(service, 'authenticate').mockResolvedValueOnce(true);
       const updated = await service.updatePassword(userId, changes);
       expect(userServiceMock.update).toHaveBeenCalledTimes(1);
     });
 
-    it('should throw error when not authenticated', async function() {
+    it('should throw error when not authenticated', async () => {
       jest.spyOn(service, 'authenticate').mockResolvedValueOnce(false);
       await expect(service.updatePassword(userId, changes)).rejects.toThrow(UnauthorizedException);
       expect(userServiceMock.update).toHaveBeenCalledTimes(0);

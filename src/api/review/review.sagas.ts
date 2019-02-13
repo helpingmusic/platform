@@ -9,7 +9,7 @@ export class ReviewSagas {
 
   sendNotification = (events$: EventObservable<ReviewCreatedEvent>) =>
     events$.ofType(ReviewCreatedEvent)
-      .pipe(map(event => new SendReviewNotificationCommand(event.review)));
+      .pipe(map(event => new SendReviewNotificationCommand(event.review)))
 
   sagas = [
     this.sendNotification,

@@ -49,12 +49,12 @@ describe('PasswordResetService', () => {
       cmdBusMock.execute.mockClear();
     });
 
-    it('should execute send password reset email command with token', async function() {
+    it('should execute send password reset email command with token', async () => {
       await service.createReset(email);
       expect(cmdBusMock.execute).toHaveBeenCalledWith(new SendResetEmailCommand(passwordReset, token));
     });
 
-    it('should throw exception is no user is found', async function() {
+    it('should throw exception is no user is found', async () => {
       userServiceMock.findByEmail.mockResolvedValueOnce(null);
       await expect(service.createReset(email)).rejects.toThrow(NotFoundException);
       expect(cmdBusMock.execute).toHaveBeenCalledTimes(0);
@@ -71,7 +71,7 @@ describe('PasswordResetService', () => {
       update: jest.fn(),
     };
 
-    beforeAll(function() {
+    beforeAll(() => {
       modelMock.findById.mockResolvedValue(pr);
     });
 
@@ -81,7 +81,7 @@ describe('PasswordResetService', () => {
         await service.resetPassword(resetId, token, newPassword);
       });
 
-      afterAll(function() {
+      afterAll(() => {
         userServiceMock.update.mockClear();
       });
 

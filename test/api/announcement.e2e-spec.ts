@@ -73,4 +73,3 @@ describe('AnnouncementController (e2e)', () => {
 
   });
 });
-

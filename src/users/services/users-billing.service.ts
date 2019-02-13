@@ -63,10 +63,8 @@ export class UsersBillingService {
 
     // Users can only apply one coupon
     if (user.couponUsed) return false;
-    try {
-      var coup = await stripe.coupons.retrieve(code);
-    } catch (e) { /* No coupon found */
-    }
+    const coup = await stripe.coupons.retrieve(code)
+        .catch(e => { /* No coupon found */ });
 
     if (!coup) return;
 

@@ -9,7 +9,7 @@ export class IssueSagas {
 
   sendNotification = (events$: EventObservable<IssueCreatedEvent>) =>
     events$.ofType(IssueCreatedEvent)
-      .pipe(map(event => new SendIssueNotificationCommand(event.issue)));
+      .pipe(map(event => new SendIssueNotificationCommand(event.issue)))
 
   sagas = [
     this.sendNotification,

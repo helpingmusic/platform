@@ -49,7 +49,7 @@ describe('Stripe Sagas', () => {
     expect(sagas).toBeDefined();
   });
 
-  it('should fire saga functions on stripe events', function() {
+  it('should fire saga functions on stripe events', () => {
     const payload = { object: 'customer' };
     const e = new StripeEvent(StripeEvents.CUSTOMER_UPDATED, payload);
     event$.publish(e);

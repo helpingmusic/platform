@@ -65,7 +65,7 @@ describe('BillUserForBookingHandler', () => {
     handler = module.get<BillUserForBookingHandler>(BillUserForBookingHandler);
   });
 
-  it('should be truthy', function() {
+  it('should be truthy', () => {
     expect(handler).toBeTruthy();
   });
 
@@ -83,13 +83,13 @@ describe('BillUserForBookingHandler', () => {
       expect(res.data).toBeTruthy();
     });
 
-    it('should charge user', function() {
+    it('should charge user', () => {
       expect(userBillingMock.charge).toHaveBeenCalledTimes(1);
       const amount = userBillingMock.charge.mock.calls[0][1][0].amount;
       expect(amount).toBe(booking.duration * bookableRate);
     });
 
-    it('should update the booking with invoice information', function() {
+    it('should update the booking with invoice information', () => {
       const invoiceAmount = userBillingMock.charge.mock.calls[0][1][0].amount;
       expect(bookingService.update).toHaveBeenCalledWith(booking, {
         invoiceId: invoice.id,
@@ -114,7 +114,7 @@ describe('BillUserForBookingHandler', () => {
       expect(res.error).toBeTruthy();
     });
 
-    it('should not update the booking', function() {
+    it('should not update the booking', () => {
       expect(bookingService.update).toHaveBeenCalledTimes(0);
     });
   });

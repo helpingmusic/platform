@@ -113,4 +113,3 @@ BookingSchema.virtual('duration')
     const duration = moment.duration(moment(this.end).diff(moment(this.start)));
     return duration.asHours();
   });
-

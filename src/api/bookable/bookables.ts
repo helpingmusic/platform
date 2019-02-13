@@ -75,7 +75,10 @@ export const Bookables: Array<IBookable> = [
     id: 'home-stage',
     name: 'HOME Stage',
     location: 'HOME HQ',
-    description: 'HOME Stage can be used during normal office hours (M-F 9-5) for video, photography, or acoustic rehersal only. No drums or loud amplification are permitted during those times. ',
+    description: `HOME Stage can be used during normal office hours (M-F 9-5)
+      for video, photography, or acoustic rehearsal only. No drums or loud 
+      amplification are permitted during those times.
+    `,
     imageUrl: '/assets/images/studios/HOME_Stage.jpg',
     calendars: ['evolvemusic.org_72bn0f1ogmigau4jlvprel6mlc@group.calendar.google.com'],
 

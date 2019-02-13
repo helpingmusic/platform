@@ -9,7 +9,7 @@ export class AnnouncementSagas {
 
   notifyUsers = (events$: EventObservable<AnnouncementCreatedEvent>) =>
     events$.ofType(AnnouncementCreatedEvent)
-      .pipe(map((event: AnnouncementCreatedEvent) => new SendNotificationCommand(event.announcement)));
+      .pipe(map((event: AnnouncementCreatedEvent) => new SendNotificationCommand(event.announcement)))
 
   sagas = [
     this.notifyUsers,

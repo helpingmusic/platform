@@ -39,7 +39,7 @@ describe('CurrentUser Controller', () => {
       res = await ctrl.me({ _id: id } as IUser);
     });
 
-    it('should call user service with current user id', async function() {
+    it('should call user service with current user id', async () => {
       expect(userServiceMock.getById).toHaveBeenCalledWith(id);
     });
 

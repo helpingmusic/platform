@@ -12,14 +12,14 @@ export class ReportSagas {
 
   sendAdminNotification = (events$: EventObservable<ReportCreatedEvent>) =>
     events$.ofType(ReportCreatedEvent)
-      .pipe(map(event => new SendAdminReportNotificationCommand(event.report)));
+      .pipe(map(event => new SendAdminReportNotificationCommand(event.report)))
 
   hideReportedItem = (events$: EventObservable<ReportResolvedEvent>) =>
     events$.ofType(ReportResolvedEvent)
       .pipe(
         filter(event => event.report.status === ReportStatus.REMOVED),
         map(event => new RemoveReportedMediaCommand(event.report)),
-      );
+      )
 
   sagas = [
     this.sendAdminNotification,
