@@ -10,7 +10,6 @@
   "scripts": {
     "postinstall": "npm run build",
     "start": "ts-node -r dotenv/config -r tsconfig-paths/register src/main.ts dotenv_config_path=.env/local.env",
-    "serve:heroku": "npm run build; NODE_PATH=dist/ heroku local -e ./.env/local.env",
     "build": "rimraf dist; tsc",
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
