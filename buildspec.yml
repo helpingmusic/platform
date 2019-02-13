@@ -4,6 +4,7 @@ version: 0.2
 phases:
   install:
     commands:
+      - npm install -g node-gyp
       - npm install
   build:
     commands:
