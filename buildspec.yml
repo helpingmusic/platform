@@ -1,0 +1,17 @@
+# AWS buidlspec version
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm run lint
+      - npm run test
+      - npm run build
+      -
+artifacts:
+  files:
+    - dist/*
+    - package.json
