@@ -11,7 +11,6 @@ export const AlgoliaToken = 'AlgoliaClient';
 export const AlogliaClient = {
   provide: AlgoliaToken,
   useFactory: (config: ConfigService) => {
-    console.log('algolia config');
     return algoliasearch(
       config.get('ALGOLIA_APP_ID'),
       config.get('ALGOLIA_ADMIN_KEY'),
