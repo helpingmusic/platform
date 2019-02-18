@@ -8,7 +8,7 @@ phases:
   build:
     commands:
       - npm run lint
-      - npm run test
+      - npm run test --forceExit
       - npm run build
 
 artifacts:
