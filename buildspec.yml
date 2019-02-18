@@ -8,8 +8,13 @@ phases:
   build:
     commands:
       - npm run lint
+      - echo "Finished lint"
       - npm run test --forceExit
+      - echo "Finished test"
       - npm run build
+      - echo "Finished build"
+    finally:
+      - echo "Finished"
 
 artifacts:
   files:
