@@ -9,7 +9,7 @@ export class PostSagas {
 
   createThread = (events$: EventObservable<PostCreatedEvent>) =>
     events$.ofType(PostCreatedEvent)
-      .pipe(map((event: PostCreatedEvent) => new CreateThreadCommand(event.post._id)));
+      .pipe(map((event: PostCreatedEvent) => new CreateThreadCommand(event.post._id)))
 
   sagas = [
     this.createThread,

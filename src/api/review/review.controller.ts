@@ -34,7 +34,6 @@ export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {
   }
 
-
   /**
    * Index
    */

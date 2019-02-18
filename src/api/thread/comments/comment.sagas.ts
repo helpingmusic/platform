@@ -10,14 +10,14 @@ export class CommentSagas {
 
   notifyMediaPoster$ = (events$: EventObservable<CommentCreatedEvent>) =>
     events$.ofType(CommentCreatedEvent)
-      .pipe(map(event => new SendPosterCommentNotificationCommand(event.comment)));
+      .pipe(map(event => new SendPosterCommentNotificationCommand(event.comment)))
 
   notifyParentCommenter$ = (events$: EventObservable<CommentCreatedEvent>) =>
     events$.ofType(CommentCreatedEvent)
       .pipe(
         filter(({ comment }) => !!comment.parent), // only notify parent if they exist
         map(event => new SendParentCommentNotificationCommand(event.comment)),
-      );
+      )
 
   sagas = [
     this.notifyMediaPoster$,

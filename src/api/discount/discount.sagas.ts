@@ -9,7 +9,7 @@ export class DiscountSagas {
 
   sendNotification = (events$: EventObservable<DiscountCreatedEvent>) =>
     events$.ofType(DiscountCreatedEvent)
-      .pipe(map(event => new SendDiscountNotificationCommand(event.discount)));
+      .pipe(map(event => new SendDiscountNotificationCommand(event.discount)))
 
   sagas = [
     this.sendNotification,

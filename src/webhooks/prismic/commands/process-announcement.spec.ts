@@ -42,7 +42,7 @@ describe('ProcessAnnouncementHandler', () => {
 
     beforeAll(() => new Promise((res) => handler.execute(cmd, res)));
 
-    it('should create new announcement', async () => {
+    it('should create new announcement', () => {
       expect(annMock.create).toBeCalledTimes(1);
     });
   });
@@ -65,10 +65,9 @@ describe('ProcessAnnouncementHandler', () => {
       return new Promise((res) => handler.execute(cmd, res));
     });
 
-    it('should update announcement', async () => {
+    it('should update announcement', () => {
       expect(annMock.update).toBeCalledTimes(1);
     });
   });
-
 
 });

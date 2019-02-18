@@ -51,7 +51,7 @@ describe('Prismic Sagas', () => {
     expect(sagas).toBeDefined();
   });
 
-  it('should fire ProcessAnnouncementCommand on webhook', async function() {
+  it('should fire ProcessAnnouncementCommand on webhook', async () => {
     const ann: Partial<IPrismicAnnouncement> = { type: DocTypes.ANNOUNCEMENT };
     cmsServiceMock.getLatestDocs = jest.fn().mockResolvedValue({
       results: [ann, ann, { type: '' }],

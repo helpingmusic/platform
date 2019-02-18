@@ -34,4 +34,3 @@ export class ThreadService extends EntityService<IThread> {
   }
 
 }
-

@@ -30,7 +30,7 @@ export class PrismicSagas {
         filter((doc) => doc.type === DocTypes.ANNOUNCEMENT),
         map(doc => new ProcessAnnouncementCommand(doc)),
       )
-  );
+  )
 
   // webhookTriggered$ = (events$: EventObservable<PrismicEvent>): Observable<ICommand> => (
   //   events$.ofType(PrismicEvent)

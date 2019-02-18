@@ -25,7 +25,7 @@ export class UserSagas {
    */
   createStripeCustomer = (events$: EventObservable<UserCreatedEvent>) =>
     events$.ofType(UserCreatedEvent)
-      .pipe(map(event => new CreateStripeCustomerCommand(event.user)));
+      .pipe(map(event => new CreateStripeCustomerCommand(event.user)))
 
   /**
    * Update user search index when user is created/updated
@@ -36,7 +36,7 @@ export class UserSagas {
         // only update if user is active
         filter(({ user }: { user: IUser }) => user.isActive),
         map(event => new UpdateUserIndexCommand(event.user)),
-      );
+      )
 
   /**
    * Update user search index when user is created/updated
@@ -46,7 +46,7 @@ export class UserSagas {
       events$.ofType(UserRemovedEvent),
       events$.ofType(UserDeactivatedEvent),
     )
-      .pipe(map(event => new RemoveUserIndexCommand(event.user._id)));
+      .pipe(map(event => new RemoveUserIndexCommand(event.user._id)))
 
   /**
    * Confirm user email if they change it
@@ -56,7 +56,7 @@ export class UserSagas {
       .pipe(
         filter((event) => event.changes.hasOwnProperty('email')),
         map(event => new ConfirmUserEmailCommand(event.user)),
-      );
+      )
 
   /**
    *  Update User representation in stripe
@@ -68,21 +68,21 @@ export class UserSagas {
           .some(p => event.changes.hasOwnProperty(p)),
         ),
         map(event => new UpdateStripeCustomerCommand(event.user)),
-      );
+      )
 
   /**
    * Create user's referral code in stripe
    */
   createReferralCoupon = (events$: EventObservable<UserActivatedEvent>) =>
     events$.ofType(UserActivatedEvent)
-      .pipe(map(event => new CreateReferralCouponCommand(event.user._id)));
+      .pipe(map(event => new CreateReferralCouponCommand(event.user._id)))
 
   /**
    * Send welcome email on signup
    */
   emailWelcome$ = (events$: EventObservable<UserActivatedEvent>) =>
     events$.ofType(UserActivatedEvent)
-      .pipe(map(event => new SendWelcomeEmailCommand(event.user)));
+      .pipe(map(event => new SendWelcomeEmailCommand(event.user)))
 
   sagas = [
     this.createStripeCustomer,

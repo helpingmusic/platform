@@ -16,6 +16,5 @@ import { WorkerModule } from 'src/worker/worker.module';
   worker.useLogger({ log: log.info, error: log.error, warn: log.debug });
 
   await worker.listenAsync();
-  console.log('Worker is listening');
 
 })();

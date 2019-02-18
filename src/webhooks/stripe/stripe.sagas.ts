@@ -24,7 +24,7 @@ export class StripeSagas {
         filter(e => e.payload.object === 'customer'),
         map(e => new SyncCustomerCommand(e.payload)),
       )
-  );
+  )
 
   /**
    * Sync users's stripe subscription data
@@ -35,7 +35,7 @@ export class StripeSagas {
         filter(e => e.payload.object === 'subscription'),
         map(e => new SyncStripeSubscriptionCommand(e.payload)),
       )
-  );
+  )
 
   /**
    * Sync users's credit card
@@ -46,7 +46,7 @@ export class StripeSagas {
         filter(e => e.payload.object === 'card'),
         map(e => new SyncCreditCardCommand(e.payload)),
       )
-  );
+  )
 
   /**
    * Credit a member for referring another member to HOME
@@ -59,7 +59,7 @@ export class StripeSagas {
         filter(({ payload }: { payload: coupons.IDiscount }) => !!payload.coupon.metadata.referrerId),
         map(e => new CreditMemberReferralCommand(e.payload)),
       )
-  );
+  )
 
   /**
    * Send member invoice
@@ -70,7 +70,7 @@ export class StripeSagas {
         filter(e => e.type === StripeEvents.INVOICE_CREATED),
         map(e => new SendUserInvoiceCommand(e.payload)),
       )
-  );
+  )
 
   /**
    * Send user failed payment email
@@ -81,7 +81,7 @@ export class StripeSagas {
         filter(e => e.type === StripeEvents.INVOICE_PAYMENT_FAILED),
         map(e => new SendFailedPaymentEmailCommand(e.payload)),
       )
-  );
+  )
 
   sagas = [
     this.syncCustomer,

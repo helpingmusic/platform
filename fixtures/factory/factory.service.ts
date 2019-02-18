@@ -7,7 +7,6 @@ import { factory, MongooseAdapter } from 'factory-girl';
 import { AnnouncementSchema } from 'src/api/announcement/announcement.schema';
 import { UserSchema } from 'src/users/schemas/user.schema';
 
-
 @Injectable()
 export class FactoryService {
 

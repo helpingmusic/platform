@@ -11,7 +11,6 @@ export class SyncCustomerHandler implements ICommandHandler<SyncCustomerCommand>
 
   async execute(cmd: SyncCustomerCommand, resolve: (value?) => void) {
     const { customer } = cmd;
-    console.log('sync customer', customer);
 
     let updates: any = {
       'stripe.accountBalance': customer.account_balance,

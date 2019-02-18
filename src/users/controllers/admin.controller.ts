@@ -5,6 +5,7 @@ import { Roles } from 'src/auth/guards/roles.decorator';
 import { UserRoles } from 'src/auth/guards/roles.enum';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { UsersService } from 'src/users/services/users.service';
+import { UserAdminDetailVm } from 'src/users/vm/user-admin-detail.vm';
 import { UserAdminOverviewVm } from 'src/users/vm/user-admin-overview.vm';
 import { UserOverviewVm } from 'src/users/vm/user-overview.vm';
 import { Output } from 'src/common/decorators/output.decorator';
@@ -34,7 +35,7 @@ export class AdminController {
 
   @Get(':id')
   @ApiOperation({ title: 'Show User' })
-  @Output(UserSelfVm)
+  @Output(UserAdminDetailVm)
   show(@Param('id') userId: string) {
     return this.userService.getById(userId);
   }

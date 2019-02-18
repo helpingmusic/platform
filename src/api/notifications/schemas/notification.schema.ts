@@ -61,4 +61,3 @@ NotificationSchema.methods = {
   },
 
 };
-

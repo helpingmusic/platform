@@ -54,4 +54,3 @@ ThreadSchema.virtual('comments')
       })
       .filter(c => !c.parent); // filter out child comments from top level comments
   });
-

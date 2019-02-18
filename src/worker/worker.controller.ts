@@ -12,7 +12,6 @@ export class WorkerController {
 
   @MessagePattern('ping')
   async ping() {
-    console.log('worker ping');
   }
 
   @MessagePattern({ cmd: 'run-credit-allowances' })

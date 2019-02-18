@@ -15,8 +15,6 @@ import { AppModule } from './app.module';
 
 (async function bootstrap() {
 
-  process.on('unhandledRejection', r => console.log(r));
-
   const app = await NestFactory.create(AppModule);
 
   const worker = await NestFactory.createMicroservice(WorkerModule, {

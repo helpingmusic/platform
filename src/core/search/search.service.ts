@@ -1,24 +1,18 @@
-import { Injectable } from '@nestjs/common';
-import algoliasearch, { Client, Index } from 'algoliasearch';
+import { Inject, Injectable } from '@nestjs/common';
+import { Index } from 'algoliasearch';
 import { classToPlain } from 'class-transformer';
-import { ConfigService } from 'src/shared/config/config.service';
+import { AlgoliaToken, IAlgoliaClient } from 'src/core/search/algolia.provider';
 import { Indices } from 'src/core/search/indices.enum';
 import { IRecord } from 'src/core/search/record.interface';
 
 @Injectable()
 export class SearchService {
 
-  private client: Client;
   private indices = new Map<Indices, Index>();
 
   constructor(
-    private config: ConfigService,
+    @Inject(AlgoliaToken) private client: IAlgoliaClient,
   ) {
-    this.client = algoliasearch(
-      config.get('ALGOLIA_APP_ID'),
-      config.get('ALGOLIA_ADMIN_KEY'),
-    );
-
     // init each index
     this.indices.set(Indices.USERS, this.client.initIndex(Indices.USERS));
   }

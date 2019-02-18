@@ -1,0 +1,22 @@
+# AWS buidlspec version
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm run lint
+      - echo "Finished lint"
+      - npm run test --forceExit
+      - echo "Finished test"
+      - npm run build
+      - echo "Finished build"
+    finally:
+      - echo "Finished"
+
+artifacts:
+  files:
+    - dist/*
+    - package.json

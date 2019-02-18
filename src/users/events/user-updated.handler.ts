@@ -25,7 +25,21 @@ export class UserUpdatedHandler implements IEventHandler<UserUpdatedEvent> {
       );
     }
 
-    const profileFields = [ 'first_name', 'last_name', 'city', 'state', 'profession', 'bio', 'membership_types', 'genres', 'instruments', 'skills', 'resources', 'profile_pic', 'banner' ];
+    const profileFields = [
+      'first_name',
+      'last_name',
+      'city',
+      'state',
+      'profession',
+      'bio',
+      'membership_types',
+      'genres',
+      'instruments',
+      'skills',
+      'resources',
+      'profile_pic',
+      'banner',
+    ];
     const profileChanged = profileFields.some(f => changes.hasOwnProperty(f));
     if (profileChanged) {
       this.eventBus.publish(

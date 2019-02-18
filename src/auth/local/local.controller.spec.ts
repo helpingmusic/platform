@@ -73,7 +73,7 @@ describe('Local Controller', () => {
           .send(loginData);
       });
 
-      it('should be okay', function() {
+      it('should be okay', () => {
         expect(res.status).toBe(200);
       });
 
@@ -84,14 +84,14 @@ describe('Local Controller', () => {
 
     });
 
-    it('should be unauthorized with bad email', function() {
+    it('should be unauthorized with bad email', () => {
       return request(app.getHttpServer())
         .post('/auth/local')
         .send({ email: 'badEmail', password: 'test' })
         .expect(401);
     });
 
-    it('should be unauthorized with bad password', function() {
+    it('should be unauthorized with bad password', () => {
       return request(app.getHttpServer())
         .post('/auth/local')
         .send({ email: 'test@example.com', password: 'badpassword' })
