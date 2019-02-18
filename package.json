@@ -17,7 +17,7 @@
     "worker": "node dist/src/worker.js",
     "clock": "node dist/src/clock.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json",
