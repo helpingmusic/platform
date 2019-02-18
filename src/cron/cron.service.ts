@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { ClientProxy, ClientProxyFactory, Transport } from '@nestjs/microservices';
-import { Log } from 'algoliasearch';
 import { Cron, defaults, NestSchedule } from 'nest-schedule';
 import { first } from 'rxjs/operators';
 import { ConfigService } from 'src/shared/config/config.service';

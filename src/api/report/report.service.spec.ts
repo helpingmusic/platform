@@ -5,11 +5,10 @@ import { ReportService } from './report.service';
 describe('Report Service', () => {
   let module: TestingModule;
 
-  const modelMock = jest.fn().mockImplementation(() => ({
-    findById: jest.fn(),
-  }));
-
   beforeAll(async () => {
+    const modelMock = jest.fn().mockImplementation(() => ({
+      findById: jest.fn(),
+    }));
     module = await Test.createTestingModule({
       providers: [
         ReportService,

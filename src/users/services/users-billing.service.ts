@@ -7,10 +7,10 @@ import { LogService } from 'src/shared/logger/log.service';
 import { ILogger } from 'src/shared/logger/logger.interface';
 import { IBilling } from 'src/users/interfaces/billing.interface';
 import { stripe } from 'src/common/vendor';
-import * as Stripe from 'stripe';
-import { ICard, IStripeError } from 'stripe';
+import { ICard, subscriptions } from 'stripe';
 import { IUser } from 'src/users/interfaces/user.interface';
-import ISubscription = Stripe.subscriptions.ISubscription;
+
+type ISubscription = subscriptions.ISubscription;
 
 @Injectable()
 export class UsersBillingService {
