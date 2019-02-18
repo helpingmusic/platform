@@ -65,7 +65,7 @@ describe('ProcessAnnouncementHandler', () => {
       return new Promise((res) => handler.execute(cmd, res));
     });
 
-    it('should update announcement', async () => {
+    it('should update announcement', () => {
       expect(annMock.update).toBeCalledTimes(1);
     });
   });

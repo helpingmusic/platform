@@ -107,7 +107,7 @@ describe('BillUserForBookingHandler', () => {
     });
     afterAll(() => clearMocks());
 
-    it('should resolve execution with error', async () => {
+    it('should resolve execution with error', () => {
       const res: CommandResult = resolveMock.mock.calls[0][0];
       expect(res).toBeTruthy();
       expect(res.successful).toBe(false);
