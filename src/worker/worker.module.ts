@@ -15,10 +15,11 @@ import { WorkerController } from 'src/worker/worker.controller';
     CreditTransactionModule,
     SearchModule,
   ],
-  controllers: [
+  exports: [
     WorkerController,
   ],
   providers: [
+    WorkerController,
     ...CommandHandlers,
   ],
 })
