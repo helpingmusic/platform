@@ -14,8 +14,6 @@
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
     "start:prod": "node dist/src/main.js",
-    "worker": "node dist/src/worker.js",
-    "clock": "node dist/src/clock.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest --detectOpenHandles --forceExit",
     "test:watch": "jest --watch",

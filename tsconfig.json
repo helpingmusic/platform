@@ -24,8 +24,6 @@
   },
   "files": [
     "src/main.ts",
-    "src/worker.ts",
-    "src/clock.ts",
     "cmd/command.ts"
   ],
   "include": [
