@@ -61,7 +61,7 @@ export class CreditTransactionService extends EntityService<ICreditTransaction> 
       .populate('user')
       .exec();
 
-    console.log('allPending', allPending.length);
+    console.log('allPending', allPending.length); // tslint:disable-line
 
     // grab transactions that should have run by now
     return allPending.filter(at => moment().isAfter(at.runOn));
