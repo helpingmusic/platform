@@ -1,27 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { MessagePattern } from '@nestjs/microservices';
+import { Cron, NestSchedule } from 'nest-schedule';
 import { RunCreditAllowancesCommand } from 'src/worker/commands/run-credit-allowances.command';
 import { SyncUserIndexCommand } from 'src/worker/commands/sync-user-index.command';
 
 @Injectable()
-export class WorkerController {
+export class WorkerController extends NestSchedule {
 
   constructor(private cmdBus: CommandBus) {
+    super();
   }
 
-  @MessagePattern('ping')
-  async ping() {
-  }
-
-  @MessagePattern({ cmd: 'run-credit-allowances' })
+  @Cron('* * * * *')
   async runCreditAllowances() {
     return await this.cmdBus.execute(
       new RunCreditAllowancesCommand(),
     );
   }
 
-  @MessagePattern({ cmd: 'sync-user-index' })
+  @Cron('0 0 * * *')
   async syncUserIndex() {
     return await this.cmdBus.execute(
       new SyncUserIndexCommand(),

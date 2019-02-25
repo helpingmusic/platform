@@ -19,16 +19,23 @@ export class RunCreditAllowancesHandler implements ICommandHandler<RunCreditAllo
   }
 
   async execute(cmd: RunCreditAllowancesCommand, resolve: (value?) => void) {
-    const allowances = await this.transactionService.findPendingAllowances();
-    this.log.debug('pending allowances', allowances.length);
+    let allowances;
+    try {
+      allowances = await this.transactionService.findPendingAllowances();
+    } catch (err) {
+      this.log.error(err);
+      return resolve();
+    }
 
-    return Promise.all(allowances.map(async (at) => {
+    this.log.info('pending allowances ' + allowances.length);
+
+    await Promise.all(allowances.map(async (at) => {
 
       const u = at.user as IUser;
       const lastAllowance = await this.transactionService.findLastAllowanceForUser(String(u._id));
       let applyToNextMonth = at.amount;
 
-      this.log.debug('user', u._id, 'allowance', at._id);
+      this.log.info(`user ${u._id}; allowance ${at._id}`);
       if (lastAllowance) {
         const transactions = await this.transactionService.find({
           user: at.user,
@@ -49,7 +56,7 @@ export class RunCreditAllowancesHandler implements ICommandHandler<RunCreditAllo
         type: TransactionTypes.MONTHLY_ALLOWANCE,
       });
 
-      this.log.debug(newTransaction.toObject());
+      this.log.info(newTransaction.toObject());
 
       at.set({ status: 'used' });
       return at.save();
@@ -58,6 +65,8 @@ export class RunCreditAllowancesHandler implements ICommandHandler<RunCreditAllo
       .catch(err => {
         this.log.error(err);
       });
+
+    resolve();
 
   }
 }

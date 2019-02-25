@@ -1,30 +1,20 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import compression from 'compression';
 import helmet from 'helmet';
-import { CronModule } from 'src/cron/cron.module';
 
 import { ConfigService } from 'src/shared/config/config.service';
 import { LogService } from 'src/shared/logger/log.service';
-import { WorkerModule } from 'src/worker/worker.module';
 
 import { AppModule } from './app.module';
+import { WorkerModule } from 'src/worker/worker.module';
 
 (async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
-
-  const worker = await NestFactory.createMicroservice(WorkerModule, {
-    transport: Transport.REDIS,
-    options: {
-      url: process.env.REDIS_URI,
-    },
-  });
-
-  const clock = await NestFactory.create(CronModule);
+  const worker = await NestFactory.createApplicationContext(WorkerModule);
 
   const config = app.get<ConfigService>(ConfigService);
 
@@ -46,8 +36,6 @@ import { AppModule } from './app.module';
     return { log: l.info, error: l.error, warn: l.debug };
   };
   app.useLogger(createLogger('web'));
-  worker.useLogger(createLogger('worker'));
-  clock.useLogger(createLogger('clock'));
 
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true, // strips unnamed props
@@ -63,7 +51,6 @@ import { AppModule } from './app.module';
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 
-  await worker.listenAsync();
   await app.listen(process.env.PORT);
 
 })();
