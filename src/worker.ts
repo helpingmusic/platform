@@ -9,6 +9,8 @@ import { WorkerModule } from 'src/worker/worker.module';
     transport: Transport.REDIS,
     options: {
       url: process.env.REDIS_URI,
+      retryAttempts: 10,
+      retryDelay: 3000,
     },
   });
 
