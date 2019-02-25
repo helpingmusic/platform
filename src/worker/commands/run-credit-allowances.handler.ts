@@ -49,18 +49,21 @@ export class RunCreditAllowancesHandler implements ICommandHandler<RunCreditAllo
         applyToNextMonth = used > at.amount ? at.amount : used;
       }
 
-      const newTransaction = await this.transactionService.create({
-        user: u._id,
-        startAmount: u.credits,
-        endAmount: u.credits + applyToNextMonth,
-        type: TransactionTypes.MONTHLY_ALLOWANCE,
-      });
+      try {
+        const newTransaction = await this.transactionService.create({
+          user: u._id,
+          startAmount: u.credits,
+          endAmount: u.credits + applyToNextMonth,
+          type: TransactionTypes.MONTHLY_ALLOWANCE,
+        });
 
-      this.log.info(newTransaction.toObject());
+        this.log.info(newTransaction.toObject());
+      } catch (e) {
+        this.log.error(e);
+      }
 
       at.set({ status: 'used' });
       return at.save();
-
     }))
       .catch(err => {
         this.log.error(err);

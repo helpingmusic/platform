@@ -58,8 +58,10 @@ export class CreditTransactionService extends EntityService<ICreditTransaction> 
   async findPendingAllowances(): Promise<IAllowanceTransaction[]> {
     const allPending = await this.allowanceModel
       .find({ status: 'pending' })
-      .populate('user', 'credits')
+      .populate('user')
       .exec();
+
+    console.log('allPending', allPending.length); // tslint:disable-line
 
     // grab transactions that should have run by now
     return allPending.filter(at => moment().isAfter(at.runOn));

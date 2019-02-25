@@ -50,6 +50,7 @@ CreditTransactionSchema.virtual('amount')
 CreditTransactionSchema.pre('validate', async function(next) {
   if (!this.isNew) return next();
 
+  console.log('Update user credits'); // tslint:disable-line
   await this.populate({ path: 'user', select: 'credits' }).execPopulate();
   this.set({ startAmount: this.get('user').credits });
   // Update user credit amount
