@@ -28,6 +28,8 @@ export class CronService extends NestSchedule {
       transport: Transport.REDIS,
       options: {
         url: this.config.get('REDIS_URI'),
+        retryAttempts: 10,
+        retryDelay: 3000,
       },
     });
   }
@@ -39,7 +41,7 @@ export class CronService extends NestSchedule {
       .subscribe();
   }
 
-  @Cron('0 1 * * *')
+  @Cron('* * * * *')
   async runCreditAllowances() {
     this.runJob({ cmd: 'run-credit-allowances' });
   }
