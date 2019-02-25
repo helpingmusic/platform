@@ -11,7 +11,7 @@ export class WorkerController extends NestSchedule {
     super();
   }
 
-  @Cron('* * * * *')
+  @Cron('0 * * * *')
   async runCreditAllowances() {
     return await this.cmdBus.execute(
       new RunCreditAllowancesCommand(),
