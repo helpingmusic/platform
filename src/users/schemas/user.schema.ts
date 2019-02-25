@@ -18,6 +18,7 @@ export const UserSchema = new Schema({
   email: {
     type: String,
     lowercase: true,
+    unique: true,
     required() {
       // Only need email if no provider
       return this.providers.some(p => p === 'local');

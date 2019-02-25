@@ -34,7 +34,12 @@ export class UsersService {
       .exec();
   }
 
-  createUser(createUserDto: Partial<IUser>): Promise<IUser> {
+  async createUser(createUserDto: Partial<IUser>): Promise<IUser> {
+    const existing = await this.userModel.count({ email: createUserDto.email }).exec();
+    if (existing !== 0) {
+      throw new BadDataException({ field: 'email', message: 'Email already exists' });
+    }
+
     return this.userModel.create(createUserDto);
   }
 

@@ -1,5 +1,5 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-import { Expose, Type } from 'class-transformer';
+import { Expose, Type, Transform } from 'class-transformer';
 import { UserOverviewVm } from 'src/users/vm/user-overview.vm';
 import { DocumentVm } from 'src/common/abstract/document.vm';
 
@@ -11,7 +11,7 @@ export class CommentVm extends DocumentVm {
 
   @ApiModelProperty()
   @Expose()
-  @Type(() => String)
+  @Transform((v) => v ? String(v) : v)
   parent: string;
 
   @ApiModelProperty()
