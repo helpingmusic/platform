@@ -45,7 +45,6 @@ export class DiscountController {
   })
 
   @Get()
-  @Roles(UserRoles.ADMIN)
   @Output(DiscountVm)
   index(): Promise<IDiscount[]> {
     return this.discountService.index();
