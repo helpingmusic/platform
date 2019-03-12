@@ -27,7 +27,7 @@ import { CreateDiscountDto } from './dto/create-discount.dto';
 @ApiUseTags('discounts')
 @ApiResponse({ status: 401, description: 'User is not logged in' })
 @UseInterceptors(ClassSerializerInterceptor)
-@UseGuards(AuthGuard('jwt'), ActiveSubscriptionGuard, RolesGuard)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('discounts')
 export class DiscountController {
 
