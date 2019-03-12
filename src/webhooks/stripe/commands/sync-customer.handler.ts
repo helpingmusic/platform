@@ -16,7 +16,7 @@ export class SyncCustomerHandler implements ICommandHandler<SyncCustomerCommand>
       'stripe.accountBalance': customer.account_balance,
     };
 
-    if (customer.subscriptions.data) {
+    if (customer.subscriptions.total_count > 0) {
       const sub = customer.subscriptions.data
         .sort((a, b) => a.created - b.created)
         .pop();
