@@ -38,10 +38,10 @@ export class RunCreditAllowancesHandler implements ICommandHandler<RunCreditAllo
       this.log.info(`user ${u._id}; allowance ${at._id}`);
       if (lastAllowance) {
         const transactions = await this.transactionService.find({
-          user: at.user,
+          user: at.user._id,
           type: TransactionTypes.CREDIT_REDEEM,
           created_at: {
-            $gte: lastAllowance ? moment(lastAllowance.created_at).toDate() : 0,
+            $gte: moment(lastAllowance.created_at).toDate(),
           },
         });
 
@@ -50,14 +50,13 @@ export class RunCreditAllowancesHandler implements ICommandHandler<RunCreditAllo
       }
 
       try {
-        const newTransaction = await this.transactionService.create({
+        await this.transactionService.create({
           user: u._id,
           startAmount: u.credits,
           endAmount: u.credits + applyToNextMonth,
           type: TransactionTypes.MONTHLY_ALLOWANCE,
         });
 
-        this.log.info(newTransaction.toObject());
       } catch (e) {
         this.log.error(e);
       }
