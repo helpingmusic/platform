@@ -55,7 +55,7 @@ export class UsersBillingService {
   }
 
   /**
-   *  Apply coupon to user
+   *  Applies coupon to USER in stripe
    *  @param  {String} coupon code to apply
    */
   async applyCoupon(user: IUser, code: string) {
@@ -92,7 +92,12 @@ export class UsersBillingService {
     return user.save();
   }
 
-  async updateSubscription(user: IUser, tier: MembershipTiers): Promise<IBilling> {
+  /**
+   * @param user
+   * @param tier
+   * @param coupon - Applies coupon to SUBSCRIPTION in stripe
+   */
+  async updateSubscription(user: IUser, tier: MembershipTiers, coupon?: string): Promise<IBilling> {
     const plan = plans[tier];
 
     if (user.stripe.plan === plan.id) return user.stripe;
@@ -103,10 +108,12 @@ export class UsersBillingService {
       subscription = await stripe.subscriptions.create({
         customer: user.stripe.customerId,
         items: [{ plan: plan.id }],
+        coupon,
       });
     } else {
       const curSubscription = await stripe.subscriptions.retrieve(user.stripe.subscriptionId);
       subscription = await stripe.subscriptions.update(user.stripe.subscriptionId, {
+        coupon,
         items: [{
           id: curSubscription.items.data[0].id,
           plan: plan.id,

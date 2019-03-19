@@ -33,8 +33,7 @@ export class SubscriptionController {
   @ApiOkResponse({ type: UserSubscriptionVm })
   @Output(UserSubscriptionVm)
   async update(@User() user: IUser, @Body() planUpdates: UpdateSubscriptionDto) {
-    await this.userBilling.applyCoupon(user, planUpdates.couponCode);
-    return this.userBilling.updateSubscription(user, planUpdates.tier);
+    return this.userBilling.updateSubscription(user, planUpdates.tier, planUpdates.couponCode);
   }
 
   @Put('billing')
