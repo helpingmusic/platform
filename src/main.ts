@@ -23,9 +23,9 @@ import { WorkerModule } from 'src/worker/worker.module';
       config.get('APP_ORIGIN'),
       'https://home-admin.herokuapp.com',
     ],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin'],
     credentials: true,
-    methods: '*',
+    methods: [ 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS' ],
   });
   app.use(helmet());
   // app.use(csurf());
