@@ -23,7 +23,7 @@ import { WorkerModule } from 'src/worker/worker.module';
       config.get('APP_ORIGIN'),
       'https://home-admin.herokuapp.com',
     ],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Origin'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'x-xsrf-token'],
     credentials: true,
     methods: [ 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS' ],
   });
