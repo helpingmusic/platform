@@ -44,7 +44,7 @@ export const CreditTransactionSchema = new Schema({
 
 CreditTransactionSchema.virtual('amount')
   .get(function() {
-    return this.startAmount - this.endAmount;
+    return this.endAmount - this.startAmount;
   });
 
 CreditTransactionSchema.pre('validate', async function(next) {
