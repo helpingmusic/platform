@@ -92,6 +92,8 @@ export class BookingService {
       });
     }
 
+    await booking.update({ status: BookingStatus.BOOKED });
+
     return booking;
   }
 
