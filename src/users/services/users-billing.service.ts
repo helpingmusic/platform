@@ -146,9 +146,10 @@ export class UsersBillingService {
       return stripe.invoiceItems.create(invoiceItem);
     }));
 
-    const inv = Object.assign({}, {
+    const inv = {
+      ...invoiceOptions,
       customer: user.stripe.customerId,
-    }, invoiceOptions);
+    };
 
     /**
      * Apply user credits

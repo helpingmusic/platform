@@ -14,10 +14,14 @@ export class BookingEventsModel extends SchemaEventModel<IBooking> {
     super(BookingSchema, events$);
 
     BookingSchema.pre('save', async function() {
-      const doc = this as IBooking & { _cancelled: boolean };
+      const doc = this as IBooking & { _cancelled: boolean, _confirmed: boolean };
 
       if (this.isModified('status') && doc.status === BookingStatus.CANCELLED) {
         doc._cancelled = true;
+      }
+
+      if (this.isModified('status') && doc.status === BookingStatus.BOOKED) {
+        doc._confirmed = true;
       }
     });
 
@@ -25,11 +29,18 @@ export class BookingEventsModel extends SchemaEventModel<IBooking> {
       if (doc._cancelled) {
         this.cancelled(doc);
       }
+
+      if (doc._confirmed) {
+        this.paid(doc);
+      }
     });
 
   }
 
   created(a: IBooking) {
+  }
+
+  paid(a: IBooking) {
     this.events$.publish(
       new BookingCreatedEvent(a),
     );

@@ -57,7 +57,7 @@ export const BookingSchema = new Schema({
   status: {
     type: String,
     enum: { values: Object.keys(BookingStatus).map(k => BookingStatus[k]) },
-    default: BookingStatus.BOOKED,
+    default: BookingStatus.PENDING,
   },
 
   // google calendar event ids

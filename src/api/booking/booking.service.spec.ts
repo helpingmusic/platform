@@ -54,6 +54,8 @@ describe('BookingService', () => {
     service = module.get<BookingService>(BookingService);
     cmdBus = module.get<CommandBus>(CommandBus);
 
+    service.update = jest.fn().mockImplementation((b, updates) => ({ ...b, ...updates }));
+
   });
 
   beforeEach(() => {
