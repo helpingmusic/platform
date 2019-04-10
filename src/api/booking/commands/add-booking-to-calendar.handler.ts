@@ -18,7 +18,9 @@ export class AddBookingToCalendarHandler implements ICommandHandler<AddBookingTo
   }
 
   async execute(cmd: AddBookingToCalendarCommand, resolve: (value?) => void) {
-    const { booking } = cmd;
+    const { booking: { _id } } = cmd;
+
+    const booking = await this.bookingService.findById(_id);
 
     const bookable = this.bookableService.findById(booking.bookable);
     const booker = await this.userService.getById(booking.booker);
