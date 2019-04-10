@@ -10,21 +10,20 @@ import { IBooking } from 'src/api/booking/interfaces/booking.interface';
 import { UsersService } from 'src/users/services/users.service';
 
 describe('AddBookingToCalendarCommand', () => {
-
-  const calendarMock = {
-    addEvents: jest.fn().mockImplementation(async () => {
-    }),
-  };
-  const bookableService = { findById: jest.fn().mockReturnValue(Bookables[0]) };
-  const userService = { getById: jest.fn().mockReturnValue(Promise.resolve({})) };
-  const resolveMock = jest.fn();
-  const bookingMock = { update: jest.fn() };
-
   const booking = {
     bookable: Bookables[0].id,
     booker: '1',
     time: { start: new Date(), end: new Date() },
     status: BookingStatus.BOOKED,
+  };
+
+  const calendarMock = { addEvents: jest.fn() };
+  const bookableService = { findById: jest.fn().mockReturnValue(Bookables[0]) };
+  const userService = { getById: jest.fn().mockReturnValue(Promise.resolve({})) };
+  const resolveMock = jest.fn();
+  const bookingMock = {
+    update: jest.fn(),
+    findById: jest.fn().mockResolvedValue(booking),
   };
 
   let handler: AddBookingToCalendarHandler;
