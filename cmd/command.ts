@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { ExportBookingHistoryForMonth } from 'cmd/export-booking-history-for-month';
 import { UpdateStripeCustomersMetadata } from 'cmd/update-stripe-customers-metadata';
+import { ExportUsers } from 'cmd/export-users';
 import { AppModule } from 'src/app.module';
 
 module.exports = async function command(cmd: string) {
@@ -14,6 +15,10 @@ module.exports = async function command(cmd: string) {
 
     case 'update-stripe-customers-metadata':
       await UpdateStripeCustomersMetadata(app);
+      break;
+
+    case 'export-users':
+      await ExportUsers(app);
       break;
   }
 };
