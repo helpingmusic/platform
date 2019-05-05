@@ -64,7 +64,7 @@ export class UserSagas {
   updateStripeCustomer = (events$: EventObservable<UserUpdatedEvent>) =>
     events$.ofType(UserUpdatedEvent)
       .pipe(
-        filter((event) => ['email', 'first_name', 'last_name']
+        filter((event) => ['email', 'first_name', 'last_name', 'phoneNumber']
           .some(p => event.changes.hasOwnProperty(p)),
         ),
         map(event => new UpdateStripeCustomerCommand(event.user)),

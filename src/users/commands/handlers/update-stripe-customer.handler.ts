@@ -15,9 +15,10 @@ export class UpdateStripeCustomerHandler implements ICommandHandler<UpdateStripe
       user.get('stripe.customerId'),
       {
         email: user.email,
-        metadata: { _id: String(user._id), name: user.name },
-        description: user.name,
-      },
+        name: user.name,
+        phone: user.phoneNumber,
+        metadata: { _id: String(user._id) },
+      } as any,
     );
 
     resolve(cust);

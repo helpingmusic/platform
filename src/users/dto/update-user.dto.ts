@@ -42,6 +42,11 @@ export class UpdateUserDto {
   readonly state: string;
 
   @ApiModelProperty()
+  @IsString()
+  @IsOptional()
+  readonly phoneNumber: string;
+
+  @ApiModelProperty()
   @IsArray()
   @IsOptional()
   readonly genres: Array<string>;

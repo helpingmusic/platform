@@ -13,12 +13,12 @@ export class CreateStripeCustomerHandler implements ICommandHandler<CreateStripe
 
     const customer = await stripe.customers.create({
       email: user.email,
-      description: user.name,
+      name: user.name,
+      phone: user.phoneNumber,
       metadata: {
         _id: String(user._id),
-        name: user.name,
       },
-    });
+    } as any);
 
     user.set('stripe.customerId', customer.id);
     await user.save();
