@@ -33,6 +33,7 @@ export class UserUpdatedHandler implements IEventHandler<UserUpdatedEvent> {
       'profession',
       'bio',
       'membership_types',
+      'phoneNumber',
       'genres',
       'instruments',
       'skills',
