@@ -10,7 +10,6 @@ export const UpdateStripeCustomersMetadata = async (app: INestApplicationContext
 
   await Promise.all(
     users.map((user) => {
-      console.log('try cust', user._id, user.get('stripe.customerId'));
       return stripe.customers.update(
         user.get('stripe.customerId'),
         {
@@ -25,8 +24,6 @@ export const UpdateStripeCustomersMetadata = async (app: INestApplicationContext
         } as any,
       )
         .catch((e) => {
-          console.log('failed', user._id, user.get('stripe.customerId'));
-          console.log(e);
         });
     }),
   );
