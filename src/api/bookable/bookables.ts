@@ -91,6 +91,8 @@ export const Bookables: Array<IBookable> = [
       [mp.COWORK_1]: 5000,
       [mp.PRODUCTION_1]: 4000,
 
+      [mp.CREATE_1]:
+
       ...forOldOnline(90),
       ...forOldCommunity(90),
       ...forOldPro(3000),
@@ -155,6 +157,10 @@ export const Bookables: Array<IBookable> = [
     rates: {
       [mp.PRO]: 2000,
       [mp.PRODUCTION_1]: 3000,
+
+      [mp.PRO_1]: 3000,
+      [mp.PRODUCE_1]: 3000,
+      [mp.TEAM_1]: 3000,
 
       ...forOldPro(2000),
     },
