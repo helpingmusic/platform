@@ -91,6 +91,12 @@ export const Bookables: Array<IBookable> = [
       [mp.COWORK_1]: 5000,
       [mp.PRODUCTION_1]: 4000,
 
+      [mp.CREATE_1]: 5000,
+
+      [mp.PRODUCE_1]: 4000,
+      [mp.PRO_1]: 4000,
+      [mp.TEAM_1]: 4000,
+
       ...forOldOnline(90),
       ...forOldCommunity(90),
       ...forOldPro(3000),
@@ -103,6 +109,11 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: at.all,
       [mp.COWORK_1]: at.all,
       [mp.PRODUCTION_1]: at.all,
+
+      [mp.CREATE_1]: at.all,
+      [mp.PRODUCE_1]: at.all,
+      [mp.PRO_1]: at.all,
+      [mp.TEAM_1]: at.all,
 
       ...forOldOnline(at.businessHours),
       ...forOldCommunity(at.businessHours),
@@ -126,6 +137,11 @@ export const Bookables: Array<IBookable> = [
       [mp.COWORK_1]: 2500,
       [mp.PRODUCTION_1]: 2000,
 
+      [mp.CREATE_1]: 2500,
+      [mp.PRODUCE_1]: 2000,
+      [mp.PRO_1]: 2000,
+      [mp.TEAM_1]: 2000,
+
       ...forOldOnline(4500),
       ...forOldCommunity(4500),
       ...forOldPro(1000),
@@ -138,6 +154,11 @@ export const Bookables: Array<IBookable> = [
       [mp.COWRITE_1]: at.all,
       [mp.COWORK_1]: at.all,
       [mp.PRODUCTION_1]: at.all,
+
+      [mp.CREATE_1]: at.all,
+      [mp.PRODUCE_1]: at.all,
+      [mp.PRO_1]: at.all,
+      [mp.TEAM_1]: at.all,
 
       ...forOldOnline(at.businessHours),
       ...forOldCommunity(at.businessHours),
@@ -156,11 +177,19 @@ export const Bookables: Array<IBookable> = [
       [mp.PRO]: 2000,
       [mp.PRODUCTION_1]: 3000,
 
+      [mp.PRO_1]: 3000,
+      [mp.PRODUCE_1]: 3000,
+      [mp.TEAM_1]: 3000,
+
       ...forOldPro(2000),
     },
     hours: {
       [mp.PRO]: at.all,
       [mp.PRODUCTION_1]: at.all,
+
+      [mp.PRO_1]: at.all,
+      [mp.PRODUCE_1]: at.all,
+      [mp.TEAM_1]: at.all,
 
       ...forOldPro(at.all),
     },

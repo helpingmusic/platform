@@ -102,6 +102,8 @@ export class UsersBillingService {
 
     if (user.stripe.plan === plan.id) return user.stripe;
 
+    const billing = plan.frequency === 'monthly' ? 'charge_automatically' : 'send_invoice';
+
     let subscription: ISubscription;
     if (!user.stripe.subscriptionId) {
       //  Doesn't have subscription to update yet, so create
@@ -109,11 +111,15 @@ export class UsersBillingService {
         customer: user.stripe.customerId,
         items: [{ plan: plan.id }],
         coupon,
+        billing,
+        days_until_due: 10,
       });
     } else {
       const curSubscription = await stripe.subscriptions.retrieve(user.stripe.subscriptionId);
       subscription = await stripe.subscriptions.update(user.stripe.subscriptionId, {
         coupon,
+        billing,
+        days_until_due: 10,
         items: [{
           id: curSubscription.items.data[0].id,
           plan: plan.id,

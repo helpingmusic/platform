@@ -21,43 +21,65 @@ export enum MembershipTiers {
   COWRITE = 'cowrite',
   PRODUCTION = 'production',
   COWORK = 'cowork',
+
+  PRO = 'pro',
+  TEAM = 'team',
 }
 
 export enum MembershipPlans {
   ONLINE = 'online',
   PRO = 'pro',
   COMMUNITY_1 = 'community-1',
+
   CREATIVE_1 = 'creative-1',
   COWRITE_1 = 'cowrite-1',
   PRODUCTION_1 = 'production-1',
   COWORK_1 = 'cowork-1',
+
+  CREATE_1 = 'create-1',
+  PRODUCE_1 = 'produce-1',
+  PRO_1 = 'pro-1',
+  TEAM_1 = 'team-1',
 }
 
 export const plans = {
+  // DEPRECATED
   [MembershipTiers.COMMUNITY]: {
     title: 'Community Membership',
-    price: 1000,
     id: MembershipPlans.COMMUNITY_1,
+    frequency: 'monthly',
   },
+
   [MembershipTiers.CREATIVE]: {
-    title: 'Creative Membership',
-    price: 5000,
+    title: 'Connect',
     id: MembershipPlans.CREATIVE_1,
+    frequency: 'monthly',
   },
   [MembershipTiers.COWRITE]: {
-    title: 'Creative Cowriting',
-    price: 8000,
-    id: MembershipPlans.COWRITE_1,
-  },
-  [MembershipTiers.PRODUCTION]: {
-    title: 'Creative Production',
-    price: 10000,
-    id: MembershipPlans.PRODUCTION_1,
+    title: 'Create',
+    id: MembershipPlans.CREATE_1,
+    frequency: 'monthly',
   },
   [MembershipTiers.COWORK]: {
-    title: 'Creative Coworking',
-    price: 15000,
+    title: 'Collaborate',
     id: MembershipPlans.COWORK_1,
+    frequency: 'monthly',
+  },
+
+  [MembershipTiers.PRODUCTION]: {
+    title: 'Produce',
+    id: MembershipPlans.PRODUCE_1,
+    frequency: 'yearly',
+  },
+  [MembershipTiers.PRO]: {
+    title: 'Pro',
+    id: MembershipPlans.PRO_1,
+    frequency: 'yearly',
+  },
+  [MembershipTiers.TEAM]: {
+    title: 'Team',
+    id: MembershipPlans.TEAM_1,
+    frequency: 'yearly',
   },
 };
 
