@@ -75,9 +75,10 @@ export const Bookables: Array<IBookable> = [
     id: 'home-stage',
     name: 'HOME Stage',
     location: 'HOME HQ',
-    description: `HOME Stage can be used during normal office hours (M-F 9-5)
-      for video, photography, or acoustic rehearsal only. No drums or loud 
-      amplification are permitted during those times.
+    description: `
+      HOME Stage can be used 24/7 for video, photography, recording, 
+      or acoustic rehearsal. NO LOUD DRUMS OR FULL PA AMPLIFICATION permitted 
+      during business hours (M-F 9a-5p)
     `,
     imageUrl: '/assets/images/studios/HOME_Stage.jpg',
     calendars: ['evolvemusic.org_72bn0f1ogmigau4jlvprel6mlc@group.calendar.google.com'],
@@ -194,47 +195,48 @@ export const Bookables: Array<IBookable> = [
       ...forOldPro(at.all),
     },
 
-  }, {
-    _id: '5ae10d19d9d76e346de8cf9c',
-    id: 'home-facility',
-    name: 'HOME Facility',
-    location: 'HOME HQ',
-    imageUrl: '/assets/images/studios/HOME_Facility_Layout.png',
-    description: 'This calendar is meant to populate calendars for all 3 rooms at HOME HQ and facilitate booking the entire space. ',
-    calendars: [
-      'evolvemusic.org_g2iv3p769s8ivh3pq8jmdgo968@group.calendar.google.com',
-      'evolvemusic.org_72bn0f1ogmigau4jlvprel6mlc@group.calendar.google.com',
-      'evolvemusic.org_lekq9a1appp4717ushpbajj3qs@group.calendar.google.com',
-    ],
-    rates: {
-      [mp.PRO]: 7500,
-      [mp.ONLINE]: 22000,
-      [mp.COMMUNITY_1]: 15000,
-      [mp.CREATIVE_1]: 10000,
-      [mp.COWRITE_1]: 10000,
-      [mp.COWORK_1]: 10000,
-      [mp.PRODUCTION_1]: 7500,
-      'pro-mth-1': 7500,
-      'pro-mth-2': 7500,
-      'pro-yr-1': 7500,
-      'pro-yr-2': 7500,
-
-      ...forOldOnline(22000),
-      ...forOldCommunity(15000),
-      ...forOldPro(7500),
-    },
-    hours: {
-      [mp.PRO]: at.all,
-      [mp.ONLINE]: at.all,
-      [mp.COMMUNITY_1]: at.all,
-      [mp.CREATIVE_1]: at.all,
-      [mp.COWRITE_1]: at.all,
-      [mp.COWORK_1]: at.all,
-      [mp.PRODUCTION_1]: at.all,
-
-      ...forOldOnline(at.all),
-      ...forOldCommunity(at.all),
-      ...forOldPro(at.all),
-    },
   },
+  // {
+  //   _id: '5ae10d19d9d76e346de8cf9c',
+  //   id: 'home-facility',
+  //   name: 'HOME Facility',
+  //   location: 'HOME HQ',
+  //   imageUrl: '/assets/images/studios/HOME_Facility_Layout.png',
+  //   description: 'This calendar is meant to populate calendars for all 3 rooms at HOME HQ and facilitate booking the entire space. ',
+  //   calendars: [
+  //     'evolvemusic.org_g2iv3p769s8ivh3pq8jmdgo968@group.calendar.google.com',
+  //     'evolvemusic.org_72bn0f1ogmigau4jlvprel6mlc@group.calendar.google.com',
+  //     'evolvemusic.org_lekq9a1appp4717ushpbajj3qs@group.calendar.google.com',
+  //   ],
+  //   rates: {
+  //     [mp.PRO]: 7500,
+  //     [mp.ONLINE]: 22000,
+  //     [mp.COMMUNITY_1]: 15000,
+  //     [mp.CREATIVE_1]: 10000,
+  //     [mp.COWRITE_1]: 10000,
+  //     [mp.COWORK_1]: 10000,
+  //     [mp.PRODUCTION_1]: 7500,
+  //     'pro-mth-1': 7500,
+  //     'pro-mth-2': 7500,
+  //     'pro-yr-1': 7500,
+  //     'pro-yr-2': 7500,
+  //
+  //     ...forOldOnline(22000),
+  //     ...forOldCommunity(15000),
+  //     ...forOldPro(7500),
+  //   },
+  //   hours: {
+  //     [mp.PRO]: at.all,
+  //     [mp.ONLINE]: at.all,
+  //     [mp.COMMUNITY_1]: at.all,
+  //     [mp.CREATIVE_1]: at.all,
+  //     [mp.COWRITE_1]: at.all,
+  //     [mp.COWORK_1]: at.all,
+  //     [mp.PRODUCTION_1]: at.all,
+  //
+  //     ...forOldOnline(at.all),
+  //     ...forOldCommunity(at.all),
+  //     ...forOldPro(at.all),
+  //   },
+  // },
 ];
