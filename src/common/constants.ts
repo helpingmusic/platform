@@ -12,7 +12,7 @@ export enum MembershipType {
   PUBLISHER = 'publisher',
   PERFORMER = 'performer',
   PRODUCER = 'producer',
-  PATRON = 'producer',
+  PATRON = 'patron',
 }
 
 export enum MembershipTiers {
@@ -37,7 +37,7 @@ export enum MembershipPlans {
   COWORK_1 = 'cowork-1',
 
   CREATE_1 = 'create-1',
-  PRODUCE_1 = 'produce-1',
+  PRODUCE_1 = 'producer-1',
   PRO_1 = 'pro-1',
   TEAM_1 = 'team-1',
 }
