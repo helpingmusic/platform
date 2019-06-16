@@ -5,19 +5,29 @@ import { MembershipPlans as mp } from 'src/common/constants';
 
 class Rates {
   @Expose()
-  readonly [mp.PRO]: number;
-  @Expose()
   readonly [mp.ONLINE]: number;
   @Expose()
+  readonly [mp.PRO]: number;
+  @Expose()
   readonly [mp.COMMUNITY_1]: number;
+
   @Expose()
   readonly [mp.CREATIVE_1]: number;
   @Expose()
   readonly [mp.COWRITE_1]: number;
   @Expose()
-  readonly [mp.COWORK_1]: number;
-  @Expose()
   readonly [mp.PRODUCTION_1]: number;
+  @Expose()
+  readonly [mp.COWORK_1]: number;
+
+  @Expose()
+  readonly [mp.CREATE_1]: number;
+  @Expose()
+  readonly [mp.PRODUCE_1]: number;
+  @Expose()
+  readonly [mp.PRO_1]: number;
+  @Expose()
+  readonly [mp.TEAM_1]: number;
 
   @Expose()
   'pro-mth-1': number;
@@ -56,10 +66,10 @@ class DayTimes {
 class Availability {
   @Expose()
   @Type(() => DayTimes)
-  readonly [mp.PRO]: DayTimes;
+  readonly [mp.ONLINE]: DayTimes;
   @Expose()
   @Type(() => DayTimes)
-  readonly [mp.ONLINE]: DayTimes;
+  readonly [mp.PRO]: DayTimes;
   @Expose()
   @Type(() => DayTimes)
   readonly [mp.COMMUNITY_1]: DayTimes;
@@ -71,10 +81,22 @@ class Availability {
   readonly [mp.COWRITE_1]: DayTimes;
   @Expose()
   @Type(() => DayTimes)
+  readonly [mp.PRODUCTION_1]: DayTimes;
+  @Expose()
+  @Type(() => DayTimes)
   readonly [mp.COWORK_1]: DayTimes;
   @Expose()
   @Type(() => DayTimes)
-  readonly [mp.PRODUCTION_1]: DayTimes;
+  readonly [mp.CREATE_1]: DayTimes;
+  @Expose()
+  @Type(() => DayTimes)
+  readonly [mp.PRODUCE_1]: DayTimes;
+  @Expose()
+  @Type(() => DayTimes)
+  readonly [mp.PRO_1]: DayTimes;
+  @Expose()
+  @Type(() => DayTimes)
+  readonly [mp.TEAM_1]: DayTimes;
 }
 
 export class BookableVm {

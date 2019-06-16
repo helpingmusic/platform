@@ -17,7 +17,11 @@ export class UpdateStripeCustomerHandler implements ICommandHandler<UpdateStripe
         email: user.email,
         name: user.name,
         phone: user.phoneNumber,
-        metadata: { _id: String(user._id) },
+        metadata: {
+          '_id': String(user._id),
+          'First Name': user.first_name,
+          'Last Name': user.last_name,
+        },
       } as any,
     );
 

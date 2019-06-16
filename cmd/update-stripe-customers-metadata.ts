@@ -18,8 +18,10 @@ export const UpdateStripeCustomersMetadata = async (app: INestApplicationContext
           phone: user.phoneNumber,
           description: null,
           metadata: {
-            _id: String(user._id),
-            name: null,
+            '_id': String(user._id),
+            'name': null,
+            'First Name': user.first_name,
+            'Last Name': user.last_name,
           },
         } as any,
       )

@@ -2,13 +2,21 @@ import { IBookable } from 'src/api/bookable/bookable.interface';
 import { AvailabilityTypes as at } from 'src/api/bookable/constants';
 import { MembershipPlans as mp } from 'src/common/constants';
 
+// in dev mode, point all calendars to test calendar, aka not production calendars
+const calendars = (cals: string[]) => {
+  if (process.env.NODE_ENV === 'production') {
+    return cals;
+  }
+  return ['evolvemusic.org_u2kh7ellvq7hfbqqgv4bquu5mg@group.calendar.google.com'];
+};
+
 const testBookable = {
   _id: '123',
   id: 'home-test-space',
   name: 'Home Test Space',
   location: 'HOME HQ',
   description: 'Space for testing',
-  calendars: ['evolvemusic.org_u2kh7ellvq7hfbqqgv4bquu5mg@group.calendar.google.com'],
+  calendars: calendars(['evolvemusic.org_u2kh7ellvq7hfbqqgv4bquu5mg@group.calendar.google.com']),
   imageUrl: '',
 
   rates: {
@@ -81,7 +89,7 @@ export const Bookables: Array<IBookable> = [
       during business hours (M-F 9a-5p)
     `,
     imageUrl: '/assets/images/studios/HOME_Stage.jpg',
-    calendars: ['evolvemusic.org_72bn0f1ogmigau4jlvprel6mlc@group.calendar.google.com'],
+    calendars: calendars(['evolvemusic.org_72bn0f1ogmigau4jlvprel6mlc@group.calendar.google.com']),
 
     rates: {
       [mp.PRO]: 3000,
@@ -128,7 +136,7 @@ export const Bookables: Array<IBookable> = [
     location: 'HOME HQ',
     description: 'HOME Space can be used 24/7 for band rehearsal, cowrites, meeting space, or a dead tracking room. ',
     imageUrl: '/assets/images/studios/HOME_Space2.jpg',
-    calendars: ['evolvemusic.org_g2iv3p769s8ivh3pq8jmdgo968@group.calendar.google.com'],
+    calendars: calendars(['evolvemusic.org_g2iv3p769s8ivh3pq8jmdgo968@group.calendar.google.com']),
     rates: {
       [mp.PRO]: 1000,
       [mp.ONLINE]: 3000,
@@ -173,7 +181,7 @@ export const Bookables: Array<IBookable> = [
     location: 'HOME HQ',
     description: 'HOME Studio can be used 24/7 for recording, editing, mixing/mastering, podcasting, and content creation.',
     imageUrl: '/assets/images/studios/HOME_Studio.jpg',
-    calendars: ['evolvemusic.org_lekq9a1appp4717ushpbajj3qs@group.calendar.google.com'],
+    calendars: calendars(['evolvemusic.org_lekq9a1appp4717ushpbajj3qs@group.calendar.google.com']),
     rates: {
       [mp.PRO]: 2000,
       [mp.PRODUCTION_1]: 3000,
@@ -185,14 +193,14 @@ export const Bookables: Array<IBookable> = [
       ...forOldPro(2000),
     },
     hours: {
+      ...forOldPro(at.all),
+
       [mp.PRO]: at.all,
       [mp.PRODUCTION_1]: at.all,
 
       [mp.PRO_1]: at.all,
       [mp.PRODUCE_1]: at.all,
       [mp.TEAM_1]: at.all,
-
-      ...forOldPro(at.all),
     },
 
   },
