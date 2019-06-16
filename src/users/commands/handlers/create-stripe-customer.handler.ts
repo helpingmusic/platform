@@ -16,7 +16,9 @@ export class CreateStripeCustomerHandler implements ICommandHandler<CreateStripe
       name: user.name,
       phone: user.phoneNumber,
       metadata: {
-        _id: String(user._id),
+        '_id': String(user._id),
+        'First Name': user.first_name,
+        'Last Name': user.last_name,
       },
     } as any);
 
