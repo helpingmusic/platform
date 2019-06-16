@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ExportBookingHistoryForMonth } from 'cmd/export-booking-history-for-month';
+import { AddNewStripePlans } from 'cmd/stripe-migrations/2019-06-16-add-new-plans';
 import { UpdateStripeCustomersMetadata } from 'cmd/update-stripe-customers-metadata';
 import { ExportUsers } from 'cmd/export-users';
 import { AppModule } from 'src/app.module';
@@ -19,6 +20,10 @@ module.exports = async function command(cmd: string) {
 
     case 'export-users':
       await ExportUsers(app);
+      break;
+
+    case 'migrate-stripe':
+      await AddNewStripePlans(app);
       break;
   }
 };
