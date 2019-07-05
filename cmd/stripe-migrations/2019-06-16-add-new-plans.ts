@@ -1,30 +1,10 @@
 import { INestApplicationContext } from '@nestjs/common';
-import { stripe } from 'src/common/vendor';
 import { LogService } from 'src/shared/logger/log.service';
+import { Util } from './util';
 
 export const AddNewStripePlans = async (app: INestApplicationContext): Promise<any> => {
-  const log = app.get<LogService>(LogService).createLogger('stripe-migrate');
-
-  const createOrUpdate = async (plan) => {
-    log.info(`create or update ${plan.id}`);
-
-    let planExists = true;
-
-    await stripe.plans.retrieve(plan.id)
-      .catch(() => planExists = false);
-
-    if (planExists) {
-      log.info(`updating ${plan.id}`);
-      await stripe.plans.update(plan.id, {
-        metadata: plan.metadata,
-        nickname: plan.nickname,
-      });
-    } else {
-      log.info(`creating ${plan.id}`);
-      await stripe.plans.create(plan);
-    }
-
-  };
+  const log = app.get<LogService>(LogService);
+  const util = new Util(log);
 
   const newPlans = [
     {
@@ -83,6 +63,6 @@ export const AddNewStripePlans = async (app: INestApplicationContext): Promise<a
     },
   ];
 
-  await Promise.all(newPlans.map(createOrUpdate));
+  await Promise.all(newPlans.map(p => util.createOrUpdate(p)));
 
 };

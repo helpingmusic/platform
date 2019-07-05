@@ -35,6 +35,7 @@ export enum MembershipPlans {
   COWRITE_1 = 'cowrite-1',
   PRODUCTION_1 = 'production-1',
   COWORK_1 = 'cowork-1',
+  COWORK_2 = 'cowork-2',
 
   CREATE_1 = 'create-1',
   PRODUCE_1 = 'producer-1',
@@ -62,7 +63,7 @@ export const plans = {
   },
   [MembershipTiers.COWORK]: {
     title: 'Collaborate',
-    id: MembershipPlans.COWORK_1,
+    id: MembershipPlans.COWORK_2,
     frequency: 'monthly',
   },
 
