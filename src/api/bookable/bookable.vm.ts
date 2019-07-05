@@ -19,6 +19,8 @@ class Rates {
   readonly [mp.PRODUCTION_1]: number;
   @Expose()
   readonly [mp.COWORK_1]: number;
+  @Expose()
+  readonly [mp.COWORK_2]: number;
 
   @Expose()
   readonly [mp.CREATE_1]: number;
@@ -85,6 +87,9 @@ class Availability {
   @Expose()
   @Type(() => DayTimes)
   readonly [mp.COWORK_1]: DayTimes;
+  @Expose()
+  @Type(() => DayTimes)
+  readonly [mp.COWORK_2]: DayTimes;
   @Expose()
   @Type(() => DayTimes)
   readonly [mp.CREATE_1]: DayTimes;
