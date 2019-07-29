@@ -1,6 +1,7 @@
 import { Exclude, Expose } from 'class-transformer';
 import { MembershipType } from 'src/common/constants';
 import { SearchRecord } from 'src/core/search/search-record';
+import { IUser } from '../interfaces/user.interface';
 
 /**
  * Representation of user to be indexed for search
@@ -41,5 +42,11 @@ export class UserIndexVm extends SearchRecord {
 
   @Expose()
   created_at: Date;
+
+  @Expose()
+  get tier(): string {
+    const user: IUser = this as any;
+    return user.stripe.tier;
+  }
 
 }
