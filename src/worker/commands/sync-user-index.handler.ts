@@ -16,11 +16,18 @@ export class SyncUserIndexHandler implements ICommandHandler<SyncUserIndexComman
   async execute(cmd: SyncUserIndexCommand, resolve: (value?) => void) {
     const users = await this.userService.find();
 
-    const indexed = users
-      .filter(u => u.isActive)
-      .map(u => new UserIndexVm(u));
+    const [indexed, toDelete] = users
+      .reduce((agg, u) => {
+        if (u.isActive) agg[0].push(new UserIndexVm(u));
+        else agg[1].push(String(u._id));
 
-    await this.search.upsertRecords(Indices.USERS, indexed);
+        return agg;
+      }, [[], []]);
+
+    await Promise.all([
+      this.search.upsertRecords(Indices.USERS, indexed),
+      this.search.deleteRecords(Indices.USERS, toDelete),
+    ]);
 
     resolve();
   }
