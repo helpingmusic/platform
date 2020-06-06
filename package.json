@@ -33,7 +33,7 @@
     "@nestjs/swagger": "^2.5.1",
     "@nestjs/websockets": "^5.4.0",
     "algoliasearch": "^3.30.0",
-    "apollo-server-express": "^2.1.0",
+    "apollo-server-express": "^2.14.2",
     "aws-sdk": "^2.4.0",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
