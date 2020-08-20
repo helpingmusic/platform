@@ -36,7 +36,7 @@
     "apollo-server-express": "^2.1.0",
     "aws-sdk": "^2.4.0",
     "axios": "^0.18.0",
-    "bcrypt": "^3.0.0",
+    "bcrypt": "^5.0.0",
     "bull": "^3.4.8",
     "cache-manager": "^2.9.0",
     "class-transformer": "^0.1.10",
