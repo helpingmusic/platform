@@ -78,7 +78,7 @@
     "prismic-dom": "^2.1.0",
     "prismic-javascript": "^2.0.1",
     "raven": "^2.4.2",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.2",
     "s3": "^4.4.0",
