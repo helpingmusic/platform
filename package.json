@@ -56,7 +56,7 @@
     "lusca": "^1.3.0",
     "mailchimp-api-v3": "^1.7.0",
     "mandrill-api": "^1.0.45",
-    "moment": "^2.20.1",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.14",
     "mongoose": "^5.3.13",
     "mongoose-relationship": "^0.1.5",
