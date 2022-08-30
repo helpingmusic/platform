@@ -57,7 +57,7 @@
     "mailchimp-api-v3": "^1.7.0",
     "mandrill-api": "^1.0.45",
     "moment": "^2.20.1",
-    "moment-timezone": "^0.5.14",
+    "moment-timezone": "^0.5.35",
     "mongoose": "^5.3.13",
     "mongoose-relationship": "^0.1.5",
     "mongoose-validators": "^0.1.0",
